@@ -1,0 +1,9 @@
+.default-layout{
+    display: flex;
+    .default-layout__content{
+        padding: 24px;
+    }
+    .default-layout__title{
+        text-transform: capitalize;
+    }
+}
