@@ -1,4 +1,5 @@
 import { FC } from 'react';
+import { Link } from 'react-router-dom';
 import Logo from '../Logo/Logo';
 
 import './Sidebar.scss';
@@ -10,34 +11,37 @@ const Sidebar: FC = () => {
       <nav className="sidebar__nav">
         <ul className="sidebar__list">
           <li className="sidebar__list-item">
-            <a className="sidebar__list-item--link" href="#">
+            <Link className="sidebar__list-item--link" to={'/'}>
               Общий Обзор
-            </a>
+            </Link>
           </li>
           <li className="sidebar__list-item">
-            <a href="#" className="sidebar__list-item--link">
+            <Link
+              to={'/incomes-and-expenses'}
+              className="sidebar__list-item--link"
+            >
               Доходы и Расходы
-            </a>
+            </Link>
           </li>
           <li className="sidebar__list-item">
-            <a href="#" className="sidebar__list-item--link">
+            <Link to={'/statistics'} className="sidebar__list-item--link">
               Статистика
-            </a>
+            </Link>
           </li>
           <li className="sidebar__list-item">
-            <a href="#" className="sidebar__list-item--link">
+            <Link to={'/goals'} className="sidebar__list-item--link">
               Цели и Бюджетирование
-            </a>
+            </Link>
           </li>
           <li className="sidebar__list-item">
-            <a href="#" className="sidebar__list-item--link">
+            <Link to={'/settings'} className="sidebar__list-item--link">
               Настройки и Профиль
-            </a>
+            </Link>
           </li>
           <li className="sidebar__list-item">
-            <a href="#" className="sidebar__list-item--link">
+            <Link to={'/login'} className="sidebar__list-item--link">
               Выйти
-            </a>
+            </Link>
           </li>
         </ul>
       </nav>
