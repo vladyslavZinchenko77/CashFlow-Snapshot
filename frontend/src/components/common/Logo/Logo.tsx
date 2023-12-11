@@ -1,12 +1,13 @@
 import { FC } from 'react';
+import { Link } from 'react-router-dom';
 import './Logo.scss';
 
 const Logo: FC = () => {
   return (
     <div className="logo__wrap">
-      <a className="logo" href="#">
+      <Link className="logo" to={'/'}>
         CashFlow-Snapshot
-      </a>
+      </Link>
     </div>
   );
 };
