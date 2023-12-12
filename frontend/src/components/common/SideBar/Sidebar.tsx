@@ -1,5 +1,5 @@
 import { FC, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import {
   HomeOutlined,
   DollarOutlined,
@@ -27,14 +27,14 @@ const Sidebar: FC = () => {
                 : 'sidebar__list-item'
             }
           >
-            <Link
+            <NavLink
               className="sidebar__list-item--link"
               to={'/'}
               onClick={() => setActiveTab(1)}
             >
               <HomeOutlined style={{ marginRight: 10 }} />
               Загальна Інформація
-            </Link>
+            </NavLink>
           </li>
           <li
             className={
@@ -43,14 +43,14 @@ const Sidebar: FC = () => {
                 : 'sidebar__list-item'
             }
           >
-            <Link
+            <NavLink
               to={'/incomes-and-expenses'}
               className="sidebar__list-item--link"
               onClick={() => setActiveTab(2)}
             >
               <DollarOutlined style={{ marginRight: 10 }} />
               Доходи та Витрати
-            </Link>
+            </NavLink>
           </li>
           <li
             className={
@@ -59,14 +59,14 @@ const Sidebar: FC = () => {
                 : 'sidebar__list-item'
             }
           >
-            <Link
+            <NavLink
               to={'/statistics'}
               className="sidebar__list-item--link"
               onClick={() => setActiveTab(3)}
             >
               <LineChartOutlined style={{ marginRight: 10 }} />
               Статистика
-            </Link>
+            </NavLink>
           </li>
           <li
             className={
