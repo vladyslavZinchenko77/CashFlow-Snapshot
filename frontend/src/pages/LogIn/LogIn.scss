@@ -1,0 +1,20 @@
+@import "../../styles/variables.scss";
+
+.log-in{
+    display: flex;
+    height: 100vh;
+    .log-in__left{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        width: 50%;
+        .log-in__left-title{
+            text-align: center;
+        }
+    }
+    .log-in__right{
+        width: 50%;
+        background-color: $dark-blue;
+    }
+}
