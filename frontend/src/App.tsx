@@ -1,33 +1,48 @@
 import { useState } from 'react';
-import reactLogo from './assets/react.svg';
-import viteLogo from '/vite.svg';
-import './App.scss';
+import { Routes, Route } from 'react-router-dom';
+import Home from './pages/Home';
+import Statistics from './pages/Statistics/Statistics';
+import IncomeExpenses from './pages/IncomeExpenses';
+import Settings from './pages/Settings';
+import LogIn from './pages/LogIn';
+import Goals from './pages/Goals/Goals';
+import Sidebar from './components/common/SideBar/Sidebar';
+import Landing from './components/ui/Landing';
+
+import './styles/common.scss';
 
 function App() {
-  const [count, setCount] = useState(0);
+  const [isLogin, setIsLogin] = useState(true);
 
   return (
     <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      <Routes>
+        <Route path={'/'} element={<Landing />} />
+      </Routes>
+      {!isLogin && (
+        <div>
+          <Routes>
+            <Route path={'/login'} element={<LogIn />} />
+          </Routes>
+        </div>
+      )}
+      {isLogin && (
+        <div>
+          <Sidebar />
+          <div>
+            <Routes>
+              <Route path={'/dashboard'} element={<Home />} />
+              <Route
+                path={'/incomes-and-expenses'}
+                element={<IncomeExpenses />}
+              />
+              <Route path={'/statistics'} element={<Statistics />} />
+              <Route path={'/goals'} element={<Goals />} />
+              <Route path={'/settings'} element={<Settings />} />
+            </Routes>
+          </div>
+        </div>
+      )}
     </>
   );
 }
