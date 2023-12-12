@@ -1,0 +1,36 @@
+@import "../../../../../styles/variables.scss";
+
+.header{
+    padding: 12px;
+    .header__nav{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        .header__list{
+            display: flex;
+            align-items: center;
+            list-style: none;
+            
+        }
+    }
+}
+
+.header__list-item{
+    a {
+        text-decoration: none;
+        color: black;
+        margin-right: 12px;
+        font-size: 12px;
+        font-style: normal;
+        font-weight: 600;
+        line-height: 166%;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        opacity: 1;
+        transition: 0.2s;
+        &:hover{
+            opacity: 0.5;
+            transition: 0.2s;
+        }
+    }
+}

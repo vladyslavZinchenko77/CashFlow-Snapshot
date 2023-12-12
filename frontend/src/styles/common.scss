@@ -18,5 +18,30 @@ body,
 }
 
 
+// LINK
+
+  .link-btn{
+    border-radius: 4px;
+    padding: 8px 20px;
+    background: $dark-blue;
+    color: $white;
+    text-decoration: none;
+    text-align: center;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 166%; 
+    letter-spacing: 2px;
+    cursor: pointer;
+    opacity: 1;
+    transition: 0.2s;
+    &:hover{
+      opacity: 0.7;
+      transition: 0.2s;
+    }
+  }
+
+
+
 
 
