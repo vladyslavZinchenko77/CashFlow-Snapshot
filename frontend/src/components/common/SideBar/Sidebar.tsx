@@ -29,7 +29,7 @@ const Sidebar: FC = () => {
           >
             <NavLink
               className="sidebar__list-item--link"
-              to={'/'}
+              to={'/dashboard'}
               onClick={() => setActiveTab(1)}
             >
               <HomeOutlined style={{ marginRight: 10 }} />
@@ -44,7 +44,7 @@ const Sidebar: FC = () => {
             }
           >
             <NavLink
-              to={'/incomes-and-expenses'}
+              to={'/dashboard/incomes-and-expenses'}
               className="sidebar__list-item--link"
               onClick={() => setActiveTab(2)}
             >
@@ -60,7 +60,7 @@ const Sidebar: FC = () => {
             }
           >
             <NavLink
-              to={'/statistics'}
+              to={'/dashboard/statistics'}
               className="sidebar__list-item--link"
               onClick={() => setActiveTab(3)}
             >
@@ -76,7 +76,7 @@ const Sidebar: FC = () => {
             }
             onClick={() => setActiveTab(4)}
           >
-            <Link to={'/goals'} className="sidebar__list-item--link">
+            <Link to={'/dashboard/goals'} className="sidebar__list-item--link">
               <CreditCardOutlined style={{ marginRight: 10 }} />
               Цілі та Бюджетування
             </Link>
@@ -89,7 +89,7 @@ const Sidebar: FC = () => {
             }
           >
             <Link
-              to={'/settings'}
+              to={'/dashboard/settings'}
               className="sidebar__list-item--link"
               onClick={() => setActiveTab(5)}
             >
@@ -104,7 +104,7 @@ const Sidebar: FC = () => {
                 : 'sidebar__list-item'
             }
           >
-            <Link to={'/login'} className="sidebar__list-item--link">
+            <Link to={'/log-in'} className="sidebar__list-item--link">
               <LoginOutlined style={{ marginRight: 10 }} />
               Вийти
             </Link>
