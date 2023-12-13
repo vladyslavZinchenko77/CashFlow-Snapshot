@@ -22,10 +22,10 @@ const HeaderLanding: FC = () => {
             <a href="">Contact</a>
           </li>
           <Space size={12}>
-            <Link to={'/login'} className="link-btn">
+            <Link to={'/log-in'} className="link-btn">
               Log In
             </Link>
-            <Link to={'/login'} className="link-btn">
+            <Link to={'/sign-up'} className="link-btn">
               Sign Up
             </Link>
           </Space>
