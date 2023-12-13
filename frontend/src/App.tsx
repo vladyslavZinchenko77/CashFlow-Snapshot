@@ -6,6 +6,7 @@ import { Routes, Route } from 'react-router-dom';
 // import Goals from './pages/Goals/Goals';
 // import Sidebar from './components/common/SideBar/Sidebar';
 import LogIn from './pages/LogIn';
+import SignUp from './pages/SignUp/SignUp';
 import Landing from './components/ui/Landing';
 
 import './styles/common.scss';
@@ -21,10 +22,17 @@ function App() {
       {/* Login */}
       <div>
         <Routes>
-          <Route path={'/login'} element={<LogIn />} />
+          <Route path={'/log-in'} element={<LogIn />} />
+        </Routes>
+      </div>
+      {/* Sign Up */}
+      <div>
+        <Routes>
+          <Route path={'/sign-up'} element={<SignUp />} />
         </Routes>
       </div>
       {/* dashboard */}
+
       {/* <div>
         <Sidebar />
         <div>

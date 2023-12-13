@@ -1,0 +1,21 @@
+@import "../../styles/variables.scss";
+
+.sign-up{
+    display: flex;
+    
+    .sign-up__left{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        width: 50%;
+        .sign-up__left-title{
+            text-align: center;
+            margin-top: 24px;
+        }
+    }
+    .sign-up__right{
+        width: 50%;
+        background-color: $dark-blue;
+    }
+}
