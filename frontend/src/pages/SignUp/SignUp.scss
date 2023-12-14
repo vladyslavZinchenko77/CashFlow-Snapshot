@@ -17,5 +17,10 @@
     .sign-up__right{
         width: 50%;
         background-color: $dark-blue;
+        display: flex;
+        justify-content: center;
+        .sign-up__right-img{
+            width: 60%;
+        }
     }
 }
