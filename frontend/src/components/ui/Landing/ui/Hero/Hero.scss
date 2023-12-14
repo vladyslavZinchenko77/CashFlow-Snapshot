@@ -1,0 +1,44 @@
+@import "../../../../../styles//variables.scss";
+
+.hero{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 48px 0 48px;
+    background-color: $dark-blue;
+    
+    .hero__left{
+        width: 50%;
+        text-align: center;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        .hero__title{
+            color: $white;
+            width: 80%;
+            font-size: 63px;
+            font-style: normal;
+            font-weight: 900;
+            line-height: 107% ; 
+        }
+        .hero__subtitle{
+            color: $white;
+            margin-top: 24px;
+            width: 60%;
+            font-size: 16px;
+            font-style: normal;
+            font-weight: 400;
+            line-height: 137%;
+        }
+    }
+    .hero__right{
+        width: 50%;
+        display: flex;
+        justify-content: center;
+        
+        .hero__img{
+            width: 60%;
+        }
+    }
+}

@@ -11,7 +11,11 @@ const HeaderLanding: FC = () => {
     <header className="header">
       <nav className="header__nav">
         <Logo color="black" />
+
         <ul className="header__list">
+          <li className="header__list-item">
+            <a href="">Home</a>
+          </li>
           <li className="header__list-item">
             <a href="">Features</a>
           </li>

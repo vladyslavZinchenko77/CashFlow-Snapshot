@@ -1,5 +1,6 @@
 import { FC } from 'react';
 import { Button, Checkbox, Form, Input } from 'antd';
+import moneyImg from '../../assets/img/money.svg';
 
 import './LogIn.scss';
 
@@ -64,7 +65,9 @@ const LogIn: FC = () => {
           </Form.Item>
         </Form>
       </div>
-      <div className="log-in__right"></div>
+      <div className="log-in__right">
+        <img className="log-in__right-img" src={moneyImg} alt="moneyImg" />
+      </div>
     </div>
   );
 };
