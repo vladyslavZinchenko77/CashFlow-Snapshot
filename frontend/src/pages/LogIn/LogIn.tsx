@@ -1,16 +1,9 @@
-import { FC } from 'react';
+import { FC, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Button, Checkbox, Form, Input } from 'antd';
 import moneyImg from '../../assets/img/money.svg';
 
 import './LogIn.scss';
-
-const onFinish = (values: any) => {
-  console.log('Success:', values);
-};
-
-const onFinishFailed = (errorInfo: any) => {
-  console.log('Failed:', errorInfo);
-};
 
 type FieldType = {
   username?: string;
@@ -19,6 +12,33 @@ type FieldType = {
 };
 
 const LogIn: FC = () => {
+  const navigate = useNavigate();
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+  const [remember, setRemember] = useState(false);
+
+  const onFinish = (values: any) => {
+    console.log('Success:', values);
+
+    if (
+      values.username === 'test@gmail.com' &&
+      values.password === '10vivelo'
+    ) {
+      navigate('/dashboard');
+    }
+    if (
+      values.remember === true &&
+      values.username === 'test@gmail.com' &&
+      values.password === '10vivelo'
+    ) {
+      localStorage.setItem('login', values.username);
+    }
+  };
+
+  const onFinishFailed = (errorInfo: any) => {
+    console.log('Failed:', errorInfo);
+  };
+
   return (
     <div className="log-in">
       <div className="log-in__left">
