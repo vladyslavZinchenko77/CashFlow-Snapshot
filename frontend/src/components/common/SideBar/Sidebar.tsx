@@ -1,5 +1,5 @@
 import { FC, useState } from 'react';
-import { Link, NavLink } from 'react-router-dom';
+import { Link, NavLink, useNavigate } from 'react-router-dom';
 import {
   HomeOutlined,
   DollarOutlined,
@@ -14,6 +14,12 @@ import './Sidebar.scss';
 
 const Sidebar: FC = () => {
   const [activeTab, setActiveTab] = useState(1);
+  const navigate = useNavigate();
+
+  const exit = () => {
+    navigate('/log-in');
+    localStorage.clear();
+  };
 
   return (
     <div className="sidebar">
@@ -104,10 +110,10 @@ const Sidebar: FC = () => {
                 : 'sidebar__list-item'
             }
           >
-            <Link to={'/log-in'} className="sidebar__list-item--link">
+            <a href="" onClick={exit} className="sidebar__list-item--link">
               <LoginOutlined style={{ marginRight: 10 }} />
               Вийти
-            </Link>
+            </a>
           </li>
         </ul>
       </nav>
