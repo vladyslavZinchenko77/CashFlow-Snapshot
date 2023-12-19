@@ -1,4 +1,4 @@
-import { FC, useState } from 'react';
+import { FC } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { Button, Checkbox, Form, Input, Flex } from 'antd';
 import { HomeOutlined } from '@ant-design/icons';
@@ -14,9 +14,6 @@ type FieldType = {
 
 const LogIn: FC = () => {
   const navigate = useNavigate();
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
-  const [remember, setRemember] = useState(false);
 
   const onFinish = (values: any) => {
     console.log('Success:', values);
