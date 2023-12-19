@@ -1,5 +1,7 @@
 import { FC } from 'react';
 import { Button, Form, Input } from 'antd';
+import { Link } from 'react-router-dom';
+import { HomeOutlined } from '@ant-design/icons';
 import moneyImg from '../../assets/img/money.svg';
 
 import './SignUp.scss';
@@ -26,6 +28,9 @@ type FieldType = {
 const SignUp: FC = () => {
   return (
     <div className="sign-up">
+      <Link to="/" className="sign-up__back-home">
+        <HomeOutlined style={{ paddingRight: 8 }} /> Home
+      </Link>
       <div className="sign-up__left">
         <h2 className="sign-up__left-title">Sign Up</h2>
         <Form
