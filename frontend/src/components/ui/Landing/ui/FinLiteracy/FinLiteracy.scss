@@ -1,0 +1,21 @@
+@import "../../../../../../src/styles/variables.scss";
+
+.literacy{
+    display: flex;
+    align-items: center;
+
+    // .literacy__left{}
+    .literacy__right{
+        padding: 0 24px 0;
+        .literacy__right-title{
+            color: $title-text;
+            font-size: 32px;
+            font-style: normal;
+            font-weight: 700;
+            line-height: 118%;
+        }
+        .literacy__right-text{
+            padding: 12px 0 0 ;
+        }
+    }
+}
