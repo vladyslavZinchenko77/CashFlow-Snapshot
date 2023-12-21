@@ -1,0 +1,31 @@
+@import "../../../../../styles/variables.scss";
+
+.results{
+    padding: 48px 24px;
+    .results__title{
+        text-align: center;
+        color: $title-text;
+        font-size: 36px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: 119%;
+    }
+    .results__subtitle{
+        text-align: center;
+        margin-top: 8px;
+        color: $small-text;
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 137%;
+    }
+    .results__list{
+        list-style: none;
+        margin-top: 24px;
+        display: grid;
+        grid-template-columns: repeat(4,1fr);
+        .results__list-item{
+            
+        }
+    }
+}
