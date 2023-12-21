@@ -5,6 +5,7 @@ import FooterLanding from './ui/FooterLanding';
 import Features from './ui/Features/Features';
 import FinLiteracy from './ui/FinLiteracy/FinLiteracy';
 import Result from './ui/Result/Result';
+import News from './ui/News';
 
 import './Landing.scss';
 
@@ -16,6 +17,7 @@ const Landing: FC = () => {
       <Features />
       <FinLiteracy />
       <Result />
+      <News />
       <FooterLanding />
     </div>
   );
