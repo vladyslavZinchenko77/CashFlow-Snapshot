@@ -5,8 +5,8 @@ import './Features.scss';
 const Features: FC = () => {
   return (
     <section className="features">
-      <h2 className="features__title">Financial Insight Hub</h2>
-      <h4 className="features__subtitle">
+      <h2 className="features__title section__title">Financial Insight Hub</h2>
+      <h4 className="features__subtitle section__subtitle">
         Empower Your Finances with Intuitive Features
       </h4>
       <ul className="features__list">

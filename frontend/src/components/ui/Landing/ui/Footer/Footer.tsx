@@ -4,9 +4,9 @@ import youtube from '../../../../../assets/icons/youtube.svg';
 import linkedin from '../../../../../assets/icons/linkedin.svg';
 import instagram from '../../../../../assets/icons/instagram.svg';
 
-import './FooterLanding.scss';
+import './Footer.scss';
 
-const FooterLanding: FC = () => {
+const Footer: FC = () => {
   return (
     <footer className="footer">
       <nav className="footer__nav">
@@ -111,4 +111,4 @@ const FooterLanding: FC = () => {
   );
 };
 
-export default FooterLanding;
+export default Footer;

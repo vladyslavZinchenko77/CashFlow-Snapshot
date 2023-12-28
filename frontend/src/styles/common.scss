@@ -41,7 +41,48 @@ body,
     }
   }
 
+  .btn{
+    border-radius: 4px;
+    padding: 8px 20px;
+    background: $dark-blue;
+    color: $white;
+    text-decoration: none;
+    text-align: center;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 166%; 
+    letter-spacing: 2px;
+    box-shadow: none;
+    outline: none;
+    border: none;
+    cursor: pointer;
+    opacity: 1;
+    transition: 0.2s;
+    &:hover{
+      opacity: 0.7;
+      transition: 0.2s;
+    }
+  }
 
+// LANDING
 
-
+.section__title{
+  padding: 8px 0 0;
+  color: $title-text;
+  text-align: center;
+  font-size: 36px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 119%; 
+}
+.section__subtitle{
+  padding: 8px 0 24px;
+  color: $small-text;
+  text-align: center;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 137%; 
+}
 

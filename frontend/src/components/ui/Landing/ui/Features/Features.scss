@@ -2,24 +2,24 @@
 
 .features{
     padding: 24px 24px 48px 24px;
-    .features__title{
-        padding: 8px 0 0;
-        color: $title-text;
-        text-align: center;
-        font-size: 36px;
-        font-style: normal;
-        font-weight: 700;
-        line-height: 119%; 
-    }
-    .features__subtitle{
-        padding: 8px 0 24px;
-        color: $small-text;
-        text-align: center;
-        font-size: 16px;
-        font-style: normal;
-        font-weight: 400;
-        line-height: 137%; 
-    }
+    // .features__title{
+    //     padding: 8px 0 0;
+    //     color: $title-text;
+    //     text-align: center;
+    //     font-size: 36px;
+    //     font-style: normal;
+    //     font-weight: 700;
+    //     line-height: 119%; 
+    // }
+    // .features__subtitle{
+    //     padding: 8px 0 24px;
+    //     color: $small-text;
+    //     text-align: center;
+    //     font-size: 16px;
+    //     font-style: normal;
+    //     font-weight: 400;
+    //     line-height: 137%; 
+    // }
     .features__list{
         display:  grid;
         grid-template-columns: 1fr 1fr 1fr 1fr;
