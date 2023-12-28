@@ -5,9 +5,9 @@ import { useNavigate } from 'react-router-dom';
 
 import Logo from '../../../../common/Logo';
 
-import './HeaderLanding.scss';
+import './Header.scss';
 
-const HeaderLanding: FC = () => {
+const Header: FC = () => {
   const navigate = useNavigate();
 
   const logIn = () => {
@@ -52,4 +52,4 @@ const HeaderLanding: FC = () => {
   );
 };
 
-export default HeaderLanding;
+export default Header;
