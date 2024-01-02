@@ -6,6 +6,10 @@
     justify-content: center;
     padding: 48px 0 48px;
     background-color: $dark-blue;
+    @media screen and (max-width: $mobile-max) {
+        flex-direction: column;
+        
+    }
     
     .hero__left{
         width: 50%;
@@ -14,6 +18,10 @@
         justify-content: center;
         align-items: center;
         flex-direction: column;
+        @media screen and (max-width: $mobile-max) {
+            width: 100%;
+            
+        }
         .hero__title{
             color: $white;
             width: 80%;
@@ -21,6 +29,10 @@
             font-style: normal;
             font-weight: 900;
             line-height: 107% ; 
+            @media screen and (max-width: $mobile-max) {
+                font-size: 40px;
+                
+            }
         }
         .hero__subtitle{
             color: $white;
@@ -36,6 +48,11 @@
         width: 50%;
         display: flex;
         justify-content: center;
+        @media screen and (max-width: $mobile-max) {
+            width: 100%;
+            margin-top: 24px;
+            
+        }
         
         .hero__img{
             width: 60%;
