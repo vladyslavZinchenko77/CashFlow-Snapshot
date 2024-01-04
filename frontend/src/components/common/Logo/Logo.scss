@@ -2,13 +2,9 @@
 
 
 .logo__wrap{
-    padding: 24px;
-}
-
-.logo{
-    font-size: 18px;
-    text-decoration: none;
-    color: $white;
-    margin-top: 24px;
+    // padding: 24px;
+    display: flex;
+    align-items: center;
 
 }
+

@@ -4,7 +4,14 @@
     display: flex;
     align-items: center;
 
-    // .literacy__left{}
+  @media screen and (max-width: $tablet-max) {
+    flex-direction: column-reverse;
+  }
+  .literacy__left{
+    @media screen and (max-width: $tablet-max) {
+        margin-top: 24px;
+      }
+  }
     .literacy__right{
         padding: 0 24px 0;
         .literacy__right-title{

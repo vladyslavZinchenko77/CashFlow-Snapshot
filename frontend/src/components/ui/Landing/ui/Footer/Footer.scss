@@ -4,12 +4,16 @@
     .footer__nav{
         .nav-list{
             display: grid;
-            grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+            grid-template-columns:  repeat(5, 1fr);
             gap: 24px;
             list-style: none;
+            @media screen and (max-width: $mobile-max) {
+                grid-template-columns:  1fr;
+            }
             .footer__nav-list--item{
                 display: flex;
                 flex-direction: column;
+               
         
                 .nav-list__item-link{
                     color: $small-text;
