@@ -23,7 +23,7 @@ const Sidebar: FC = () => {
 
   return (
     <div className="sidebar">
-      <Logo />
+      <Logo color="#fff" />
       <nav className="sidebar__nav">
         <ul className="sidebar__list">
           <li

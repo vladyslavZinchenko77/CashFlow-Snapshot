@@ -7,7 +7,7 @@ import Goals from './pages/Goals/Goals';
 import LogIn from './pages/LogIn';
 import SignUp from './pages/SignUp/SignUp';
 import Landing from './components/ui/Landing';
-import Dashboard from './pages/Dashboard/Dashboard';
+import Dashboard from './components/ui/Dashboard/Dashboard';
 
 import './styles/common.scss';
 

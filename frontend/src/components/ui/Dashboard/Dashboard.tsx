@@ -36,7 +36,7 @@
 
 import { FC } from 'react';
 import { Outlet } from 'react-router-dom';
-import Sidebar from '../../components/common/SideBar/Sidebar';
+import Sidebar from '../../common/SideBar/Sidebar';
 
 const Dashboard: FC = () => {
   return (
