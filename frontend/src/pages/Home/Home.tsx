@@ -10,17 +10,20 @@ const Home: FC = () => {
   let balanceValue: number = 27000;
 
   return (
-    <DefaultLayout title="home page">
+    <DefaultLayout
+      title="home page"
+      subtitle="Here you can see general information"
+    >
       <div className="home">
         <Form layout="horizontal" className="home__form">
           <Form.Item className="home__form-item" label="Доходи">
-            <Input value={revenuesValue} />
+            <Input readOnly value={revenuesValue} />
           </Form.Item>
           <Form.Item className="home__form-item" label="Росходи">
-            <Input value={expensesValue} />
+            <Input readOnly value={expensesValue} />
           </Form.Item>
           <Form.Item className="home__form-item" label="Баланс">
-            <Input value={balanceValue} />
+            <Input readOnly value={balanceValue} />
           </Form.Item>
         </Form>
       </div>

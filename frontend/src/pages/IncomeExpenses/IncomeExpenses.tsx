@@ -6,8 +6,11 @@ import './IncomeExpenses.scss';
 const IncomeExpenses: FC = () => {
   return (
     <div>
-      <DefaultLayout title="Income and Expenses">
-        Money increase and decrease
+      <DefaultLayout
+        title="Income and Expenses"
+        subtitle="Money increase and decrease"
+      >
+        <div></div>
       </DefaultLayout>
     </div>
   );
