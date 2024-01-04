@@ -1,9 +1,12 @@
 import { FC } from 'react';
 import { Input, Form, Flex } from 'antd';
+import { useBreakpoints } from '../../../../../hooks/useBreakpoints';
 
 import './News.scss';
 
 const News: FC = () => {
+  const { isMobile } = useBreakpoints();
+
   return (
     <section className="news">
       <h2 className="news__title section__title">Newsletter</h2>
@@ -13,9 +16,28 @@ const News: FC = () => {
       </p>
       <Form>
         <Form.Item>
-          <Flex justify="center" style={{ marginTop: 24 }}>
-            <Input style={{ width: 300 }} />
-            <button className="btn">Subscribe</button>
+          <Flex
+            justify="center"
+            align="center"
+            style={{
+              marginTop: 24,
+              flexDirection: isMobile ? 'column' : 'row',
+            }}
+          >
+            <Input
+              style={{
+                width: isMobile ? '90%' : 300,
+              }}
+            />
+            <button
+              style={{
+                width: isMobile ? '100%' : '',
+                marginTop: isMobile ? '24px' : '',
+              }}
+              className="btn"
+            >
+              Subscribe
+            </button>
           </Flex>
         </Form.Item>
       </Form>
