@@ -13,7 +13,7 @@ const DefaultLayout: FC<DefaultLayout> = ({ children, title, subtitle }) => {
       <div className="default-layout__content">
         <h2 className="default-layout__title">{title}</h2>
         <p className="default-layout__subtitle">{subtitle}</p>
-        {children}
+        <div className="default-layout__content-wrap">{children}</div>
       </div>
     </div>
   );

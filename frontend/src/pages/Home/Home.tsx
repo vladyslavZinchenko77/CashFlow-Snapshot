@@ -1,12 +1,15 @@
 import { FC } from 'react';
 import { Input, Form } from 'antd';
+import { useAppContext } from '../../context/AppContext';
 import DefaultLayout from '../../components/common/DefaultLayout';
 
 import './Home.scss';
 
 const Home: FC = () => {
-  let revenuesValue: number = 30000;
-  let expensesValue: number = 5000;
+  const { revenuesValue, expensesValue } = useAppContext();
+
+  // let revenuesValue: number = 30000;
+  // let expensesValue: number = 5000;
   let balanceValue: number = 27000;
 
   return (

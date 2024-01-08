@@ -1,4 +1,5 @@
 import { Routes, Route } from 'react-router-dom';
+import { AppProvider } from './context/AppContext';
 import Home from './pages/Home';
 import Statistics from './pages/Statistics/Statistics';
 import IncomeExpenses from './pages/IncomeExpenses';
@@ -14,38 +15,40 @@ import './styles/common.scss';
 function App() {
   return (
     <>
-      {/* Landing pag */}
-      <Routes>
-        <Route path={'/'} element={<Landing />} />
-        <Route path={'/home'} element={<Landing />} />
-      </Routes>
-      {/* Login */}
-      <div>
+      <AppProvider>
+        {/* Landing pag */}
         <Routes>
-          <Route path={'/log-in'} element={<LogIn />} />
+          <Route path={'/'} element={<Landing />} />
+          <Route path={'/home'} element={<Landing />} />
         </Routes>
-      </div>
-      {/* Sign Up */}
-      <div>
-        <Routes>
-          <Route path={'/sign-up'} element={<SignUp />} />
-        </Routes>
-      </div>
-      {/* dashboard */}
-      <div>
-        <Routes>
-          <Route path={'/dashboard'} element={<Dashboard />}>
-            <Route path={'/dashboard'} element={<Home />} />
-            <Route
-              path={'/dashboard/incomes-and-expenses'}
-              element={<IncomeExpenses />}
-            />
-            <Route path={'/dashboard/statistics'} element={<Statistics />} />
-            <Route path={'/dashboard/goals'} element={<Goals />} />
-            <Route path={'/dashboard/settings'} element={<Settings />} />
-          </Route>
-        </Routes>
-      </div>
+        {/* Login */}
+        <div>
+          <Routes>
+            <Route path={'/log-in'} element={<LogIn />} />
+          </Routes>
+        </div>
+        {/* Sign Up */}
+        <div>
+          <Routes>
+            <Route path={'/sign-up'} element={<SignUp />} />
+          </Routes>
+        </div>
+        {/* dashboard */}
+        <div>
+          <Routes>
+            <Route path={'/dashboard'} element={<Dashboard />}>
+              <Route path={'/dashboard'} element={<Home />} />
+              <Route
+                path={'/dashboard/incomes-and-expenses'}
+                element={<IncomeExpenses />}
+              />
+              <Route path={'/dashboard/statistics'} element={<Statistics />} />
+              <Route path={'/dashboard/goals'} element={<Goals />} />
+              <Route path={'/dashboard/settings'} element={<Settings />} />
+            </Route>
+          </Routes>
+        </div>
+      </AppProvider>
     </>
   );
 }
