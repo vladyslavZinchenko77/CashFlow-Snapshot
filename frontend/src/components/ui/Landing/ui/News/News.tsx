@@ -27,12 +27,17 @@ const News: FC = () => {
             <Input
               style={{
                 width: isMobile ? '90%' : 300,
+                height: 36,
+                borderTopRightRadius: 0,
+                borderBottomRightRadius: 0,
               }}
             />
             <button
               style={{
                 width: isMobile ? '100%' : '',
                 marginTop: isMobile ? '24px' : '',
+                borderTopLeftRadius: 0,
+                borderBottomLeftRadius: 0,
               }}
               className="btn"
             >
