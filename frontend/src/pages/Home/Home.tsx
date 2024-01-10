@@ -6,10 +6,8 @@ import DefaultLayout from '../../components/common/DefaultLayout';
 import './Home.scss';
 
 const Home: FC = () => {
-  const { revenuesValue, expensesValue } = useAppContext();
+  const { incomesValue, expensesValue } = useAppContext();
 
-  // let revenuesValue: number = 30000;
-  // let expensesValue: number = 5000;
   let balanceValue: number = 27000;
 
   return (
@@ -20,7 +18,7 @@ const Home: FC = () => {
       <div className="home">
         <Form layout="horizontal" className="home__form">
           <Form.Item className="home__form-item" label="Доходи">
-            <Input readOnly value={revenuesValue} />
+            <Input readOnly value={incomesValue} />
           </Form.Item>
           <Form.Item className="home__form-item" label="Росходи">
             <Input readOnly value={expensesValue} />
