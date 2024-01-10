@@ -7,7 +7,7 @@ import './IncomeExpenses.scss';
 
 const IncomeExpenses: FC = () => {
   const {
-    revenuesValue,
+    incomesValue,
     expensesValue,
     updateExpensesValue,
     updateRevenuesValue,
@@ -30,7 +30,7 @@ const IncomeExpenses: FC = () => {
         : 0; // По умолчанию установим 0, если amountRavenue не является строкой или числом
     if (!isNaN(numericAmountRavenue)) {
       // Проверка на NaN
-      let newAmountRevenue = numericAmountRavenue + revenuesValue;
+      let newAmountRevenue = numericAmountRavenue + incomesValue;
       updateRevenuesValue(newAmountRevenue);
     }
     setAddRavenue(false);
@@ -45,7 +45,7 @@ const IncomeExpenses: FC = () => {
         : 0; // По умолчанию установим 0, если amountRavenue не является строкой или числом
     if (!isNaN(numericAmountExpenses)) {
       // Проверка на NaN
-      let newAmountExpenses = numericAmountExpenses + revenuesValue;
+      let newAmountExpenses = numericAmountExpenses + incomesValue;
       updateExpensesValue(newAmountExpenses);
     }
     setAddExpenses(false);
@@ -60,7 +60,7 @@ const IncomeExpenses: FC = () => {
         <div>
           <Form>
             <Form.Item label={'Доходи'}>
-              <Input name="ravenue" readOnly value={revenuesValue} />
+              <Input name="ravenue" readOnly value={incomesValue} />
             </Form.Item>
             <Form.Item label={'Росходи'}>
               <Input name="ravenue" readOnly value={expensesValue} />
