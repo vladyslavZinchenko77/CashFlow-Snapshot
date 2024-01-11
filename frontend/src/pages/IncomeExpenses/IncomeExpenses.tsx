@@ -1,62 +1,76 @@
-import { FC, useState } from 'react';
-import { Form, Input, Flex } from 'antd';
+import { FC, useState, useEffect } from 'react';
+import { Form, Input, Flex, Select, Spin } from 'antd';
 import { useAppContext } from '../../context/AppContext';
 import DefaultLayout from '../../components/common/DefaultLayout';
 
 import './IncomeExpenses.scss';
 
 const IncomeExpenses: FC = () => {
+  const [isLoading, setIsloading] = useState<boolean>(false);
   const {
     incomesValue,
     expensesValue,
     updateExpensesValue,
-    updateRevenuesValue,
+    updateIncomesValue,
   } = useAppContext();
-  const [addRavenue, setAddRavenue] = useState<boolean>(false);
+  const [addIncomes, setAddIncomes] = useState<boolean>(false);
   const [addExpenses, setAddExpenses] = useState<boolean>(false);
-  const [amountRavenue, setAmountRavenue] = useState<
+  const [amountIncomes, setAmountIncomes] = useState<
     number | undefined | string
   >();
   const [amountExpenses, setAmountExpenses] = useState<
     number | undefined | string
   >();
+  const [typeofIncomes, setTypeofIncomes] = useState<string | undefined>(
+    'Заробітня плата'
+  );
+  const [typeofExpenses, setTypeofExpenses] = useState<string | undefined>(
+    'Продукти'
+  );
 
-  const addRavenueHandle = () => {
-    const numericAmountRavenue =
-      typeof amountRavenue === 'string'
-        ? parseFloat(amountRavenue)
-        : typeof amountRavenue === 'number'
-        ? amountRavenue
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      setIsloading(true);
+    }, 1000);
+    return () => clearTimeout(timeout);
+  }, []);
+
+  const addIncomesHandle = () => {
+    const numericAmountIncomes =
+      typeof amountIncomes === 'string'
+        ? parseFloat(amountIncomes)
+        : typeof amountIncomes === 'number'
+        ? amountIncomes
         : 0; // По умолчанию установим 0, если amountRavenue не является строкой или числом
-    if (!isNaN(numericAmountRavenue)) {
+    if (!isNaN(numericAmountIncomes)) {
       // Проверка на NaN
-      let newAmountRevenue = numericAmountRavenue + incomesValue;
-      updateRevenuesValue(newAmountRevenue);
+      let newAmountRevenue = numericAmountIncomes + incomesValue;
+      updateIncomesValue(newAmountRevenue);
     }
-    setAddRavenue(false);
+    setAddIncomes(false);
   };
 
   const addExpensesHandle = () => {
     const numericAmountExpenses =
       typeof amountExpenses === 'string'
         ? parseFloat(amountExpenses)
-        : typeof amountRavenue === 'number'
-        ? amountRavenue
+        : typeof amountExpenses === 'number'
+        ? amountExpenses
         : 0; // По умолчанию установим 0, если amountRavenue не является строкой или числом
     if (!isNaN(numericAmountExpenses)) {
       // Проверка на NaN
-      let newAmountExpenses = numericAmountExpenses + incomesValue;
+      let newAmountExpenses = numericAmountExpenses + expensesValue;
       updateExpensesValue(newAmountExpenses);
     }
     setAddExpenses(false);
   };
 
   return (
-    <div>
-      <DefaultLayout
-        title="Income and Expenses"
-        subtitle="Money increase and decrease"
-      >
+    <DefaultLayout
+      title="Income and Expenses"
+      subtitle="Money increase and decrease"
+    >
+      {isLoading ? (
         <div>
           <Form>
             <Form.Item label={'Доходи'}>
@@ -65,27 +79,65 @@ const IncomeExpenses: FC = () => {
             <Form.Item label={'Росходи'}>
               <Input name="ravenue" readOnly value={expensesValue} />
             </Form.Item>
-            {addRavenue && (
+            {addIncomes && (
               <Form.Item>
+                <h2>Incomes</h2>
+                <Form.Item label={'Type of incomes'} style={{ marginTop: 24 }}>
+                  <Select
+                    defaultValue={typeofIncomes}
+                    onChange={(value) => {
+                      setTypeofIncomes(value);
+                    }}
+                  >
+                    <Select.Option value="Заробітня плата">
+                      Заробітня плата
+                    </Select.Option>
+                    <Select.Option value="Здача нерухомості">
+                      Здача нерухомості
+                    </Select.Option>
+                    <Select.Option value="Відсотки по депозиту">
+                      Відсотки по депозиту
+                    </Select.Option>
+                    <Select.Option value="Інше">Інше</Select.Option>
+                  </Select>
+                </Form.Item>
                 <Flex>
                   <Input
                     onChange={(e) => {
-                      setAmountRavenue(e.target.value);
+                      setAmountIncomes(e.target.value);
                     }}
                   />
                   <button
                     className="btn"
                     onClick={() => {
-                      addRavenueHandle();
+                      addIncomesHandle();
                     }}
                   >
-                    add ravenue
+                    add income
                   </button>
                 </Flex>
               </Form.Item>
             )}
             {addExpenses && (
               <Form.Item>
+                <h2>Expenses</h2>
+                <Form.Item label={'Type of expenses'} style={{ marginTop: 24 }}>
+                  <Select
+                    defaultValue={typeofExpenses}
+                    onChange={(value) => {
+                      setTypeofExpenses(value);
+                    }}
+                  >
+                    <Select.Option value="Продукти">Продукти</Select.Option>
+                    <Select.Option value="Комунальні платежі">
+                      Комунальні платежі
+                    </Select.Option>
+                    <Select.Option value="Заправка автомобіля">
+                      Заправка автомобіля
+                    </Select.Option>
+                    <Select.Option value="Інше">Інше</Select.Option>
+                  </Select>
+                </Form.Item>
                 <Flex>
                   <Input
                     onChange={(e) => {
@@ -102,7 +154,7 @@ const IncomeExpenses: FC = () => {
               className="btn"
               type="button"
               onClick={() => {
-                setAddRavenue(true);
+                setAddIncomes(true);
               }}
             >
               Додати доходи
@@ -114,12 +166,16 @@ const IncomeExpenses: FC = () => {
                 setAddExpenses(true);
               }}
             >
-              Додати росходи
+              Додати витрати
             </button>
           </Form>
         </div>
-      </DefaultLayout>
-    </div>
+      ) : (
+        <Flex justify="center">
+          <Spin size="large" />
+        </Flex>
+      )}
+    </DefaultLayout>
   );
 };
 
