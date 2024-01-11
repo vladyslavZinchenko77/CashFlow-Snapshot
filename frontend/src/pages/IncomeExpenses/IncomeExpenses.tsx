@@ -10,7 +10,7 @@ const IncomeExpenses: FC = () => {
     incomesValue,
     expensesValue,
     updateExpensesValue,
-    updateRevenuesValue,
+    updateIncomesValue,
   } = useAppContext();
   const [addRavenue, setAddRavenue] = useState<boolean>(false);
   const [addExpenses, setAddExpenses] = useState<boolean>(false);
@@ -21,7 +21,7 @@ const IncomeExpenses: FC = () => {
     number | undefined | string
   >();
 
-  const addRavenueHandle = () => {
+  const addIncomesHandle = () => {
     const numericAmountRavenue =
       typeof amountRavenue === 'string'
         ? parseFloat(amountRavenue)
@@ -31,7 +31,7 @@ const IncomeExpenses: FC = () => {
     if (!isNaN(numericAmountRavenue)) {
       // Проверка на NaN
       let newAmountRevenue = numericAmountRavenue + incomesValue;
-      updateRevenuesValue(newAmountRevenue);
+      updateIncomesValue(newAmountRevenue);
     }
     setAddRavenue(false);
   };
@@ -76,7 +76,7 @@ const IncomeExpenses: FC = () => {
                   <button
                     className="btn"
                     onClick={() => {
-                      addRavenueHandle();
+                      addIncomesHandle();
                     }}
                   >
                     add ravenue

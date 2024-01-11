@@ -7,7 +7,7 @@ interface AppContextProps {
 interface AppContextValues {
   incomesValue: number;
   expensesValue: number;
-  updateRevenuesValue: (value: number) => void;
+  updateIncomesValue: (value: number) => void;
   updateExpensesValue: (value: number) => void;
 }
 
@@ -22,11 +22,11 @@ export const useAppContext = (): AppContextValues => {
 };
 
 export const AppProvider: React.FC<AppContextProps> = ({ children }) => {
-  const [incomesValue, setRevenuesValue] = useState<number>(40000);
+  const [incomesValue, setIncomesValue] = useState<number>(40000);
   const [expensesValue, setExpensesValue] = useState<number>(27000);
 
-  const updateRevenuesValue = (value: number) => {
-    setRevenuesValue(value);
+  const updateIncomesValue = (value: number) => {
+    setIncomesValue(value);
   };
 
   const updateExpensesValue = (value: number) => {
@@ -36,7 +36,7 @@ export const AppProvider: React.FC<AppContextProps> = ({ children }) => {
   const contextValues: AppContextValues = {
     incomesValue,
     expensesValue,
-    updateRevenuesValue,
+    updateIncomesValue,
     updateExpensesValue,
   };
 
