@@ -12,7 +12,7 @@ const IncomeExpenses: FC = () => {
     updateExpensesValue,
     updateIncomesValue,
   } = useAppContext();
-  const [addRavenue, setAddRavenue] = useState<boolean>(false);
+  const [addIncomes, setAddIncomes] = useState<boolean>(false);
   const [addExpenses, setAddExpenses] = useState<boolean>(false);
   const [amountRavenue, setAmountRavenue] = useState<
     number | undefined | string
@@ -33,7 +33,7 @@ const IncomeExpenses: FC = () => {
       let newAmountRevenue = numericAmountRavenue + incomesValue;
       updateIncomesValue(newAmountRevenue);
     }
-    setAddRavenue(false);
+    setAddIncomes(false);
   };
 
   const addExpensesHandle = () => {
@@ -45,7 +45,7 @@ const IncomeExpenses: FC = () => {
         : 0; // По умолчанию установим 0, если amountRavenue не является строкой или числом
     if (!isNaN(numericAmountExpenses)) {
       // Проверка на NaN
-      let newAmountExpenses = numericAmountExpenses + incomesValue;
+      let newAmountExpenses = numericAmountExpenses + expensesValue;
       updateExpensesValue(newAmountExpenses);
     }
     setAddExpenses(false);
@@ -65,7 +65,7 @@ const IncomeExpenses: FC = () => {
             <Form.Item label={'Росходи'}>
               <Input name="ravenue" readOnly value={expensesValue} />
             </Form.Item>
-            {addRavenue && (
+            {addIncomes && (
               <Form.Item>
                 <Flex>
                   <Input
@@ -102,7 +102,7 @@ const IncomeExpenses: FC = () => {
               className="btn"
               type="button"
               onClick={() => {
-                setAddRavenue(true);
+                setAddIncomes(true);
               }}
             >
               Додати доходи
