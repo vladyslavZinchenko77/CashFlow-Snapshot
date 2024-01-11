@@ -1,5 +1,5 @@
 import { FC, useState } from 'react';
-import { Form, Input, Flex } from 'antd';
+import { Form, Input, Flex, Select } from 'antd';
 import { useAppContext } from '../../context/AppContext';
 import DefaultLayout from '../../components/common/DefaultLayout';
 
@@ -20,6 +20,12 @@ const IncomeExpenses: FC = () => {
   const [amountExpenses, setAmountExpenses] = useState<
     number | undefined | string
   >();
+  const [typeofIncomes, setTypeofIncomes] = useState<string | undefined>(
+    'Заробітня плата'
+  );
+  const [typeofExpenses, setTypeofExpenses] = useState<string | undefined>(
+    'Продукти'
+  );
 
   const addIncomesHandle = () => {
     const numericAmountRavenue =
@@ -67,6 +73,26 @@ const IncomeExpenses: FC = () => {
             </Form.Item>
             {addIncomes && (
               <Form.Item>
+                <h2>Incomes</h2>
+                <Form.Item label={'Type of incomes'} style={{ marginTop: 24 }}>
+                  <Select
+                    defaultValue={typeofIncomes}
+                    onChange={(value) => {
+                      setTypeofIncomes(value);
+                    }}
+                  >
+                    <Select.Option value="Заробітня плата">
+                      Заробітня плата
+                    </Select.Option>
+                    <Select.Option value="Здача нерухомості">
+                      Здача нерухомості
+                    </Select.Option>
+                    <Select.Option value="Відсотки по депозиту">
+                      Відсотки по депозиту
+                    </Select.Option>
+                    <Select.Option value="Інше">Інше</Select.Option>
+                  </Select>
+                </Form.Item>
                 <Flex>
                   <Input
                     onChange={(e) => {
@@ -79,13 +105,31 @@ const IncomeExpenses: FC = () => {
                       addIncomesHandle();
                     }}
                   >
-                    add ravenue
+                    add income
                   </button>
                 </Flex>
               </Form.Item>
             )}
             {addExpenses && (
               <Form.Item>
+                <h2>Expenses</h2>
+                <Form.Item label={'Type of expenses'} style={{ marginTop: 24 }}>
+                  <Select
+                    defaultValue={typeofExpenses}
+                    onChange={(value) => {
+                      setTypeofExpenses(value);
+                    }}
+                  >
+                    <Select.Option value="Продукти">Продукти</Select.Option>
+                    <Select.Option value="Комунальні платежі">
+                      Комунальні платежі
+                    </Select.Option>
+                    <Select.Option value="Заправка автомобіля">
+                      Заправка автомобіля
+                    </Select.Option>
+                    <Select.Option value="Інше">Інше</Select.Option>
+                  </Select>
+                </Form.Item>
                 <Flex>
                   <Input
                     onChange={(e) => {
@@ -114,7 +158,7 @@ const IncomeExpenses: FC = () => {
                 setAddExpenses(true);
               }}
             >
-              Додати росходи
+              Додати витрати
             </button>
           </Form>
         </div>
