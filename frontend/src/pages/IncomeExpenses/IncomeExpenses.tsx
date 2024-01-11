@@ -1,11 +1,12 @@
-import { FC, useState } from 'react';
-import { Form, Input, Flex, Select } from 'antd';
+import { FC, useState, useEffect } from 'react';
+import { Form, Input, Flex, Select, Spin } from 'antd';
 import { useAppContext } from '../../context/AppContext';
 import DefaultLayout from '../../components/common/DefaultLayout';
 
 import './IncomeExpenses.scss';
 
 const IncomeExpenses: FC = () => {
+  const [isLoading, setIsloading] = useState<boolean>(false);
   const {
     incomesValue,
     expensesValue,
@@ -14,7 +15,7 @@ const IncomeExpenses: FC = () => {
   } = useAppContext();
   const [addIncomes, setAddIncomes] = useState<boolean>(false);
   const [addExpenses, setAddExpenses] = useState<boolean>(false);
-  const [amountRavenue, setAmountRavenue] = useState<
+  const [amountIncomes, setAmountIncomes] = useState<
     number | undefined | string
   >();
   const [amountExpenses, setAmountExpenses] = useState<
@@ -27,16 +28,23 @@ const IncomeExpenses: FC = () => {
     'Продукти'
   );
 
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      setIsloading(true);
+    }, 1000);
+    return () => clearTimeout(timeout);
+  }, []);
+
   const addIncomesHandle = () => {
-    const numericAmountRavenue =
-      typeof amountRavenue === 'string'
-        ? parseFloat(amountRavenue)
-        : typeof amountRavenue === 'number'
-        ? amountRavenue
+    const numericAmountIncomes =
+      typeof amountIncomes === 'string'
+        ? parseFloat(amountIncomes)
+        : typeof amountIncomes === 'number'
+        ? amountIncomes
         : 0; // По умолчанию установим 0, если amountRavenue не является строкой или числом
-    if (!isNaN(numericAmountRavenue)) {
+    if (!isNaN(numericAmountIncomes)) {
       // Проверка на NaN
-      let newAmountRevenue = numericAmountRavenue + incomesValue;
+      let newAmountRevenue = numericAmountIncomes + incomesValue;
       updateIncomesValue(newAmountRevenue);
     }
     setAddIncomes(false);
@@ -46,8 +54,8 @@ const IncomeExpenses: FC = () => {
     const numericAmountExpenses =
       typeof amountExpenses === 'string'
         ? parseFloat(amountExpenses)
-        : typeof amountRavenue === 'number'
-        ? amountRavenue
+        : typeof amountExpenses === 'number'
+        ? amountExpenses
         : 0; // По умолчанию установим 0, если amountRavenue не является строкой или числом
     if (!isNaN(numericAmountExpenses)) {
       // Проверка на NaN
@@ -58,11 +66,11 @@ const IncomeExpenses: FC = () => {
   };
 
   return (
-    <div>
-      <DefaultLayout
-        title="Income and Expenses"
-        subtitle="Money increase and decrease"
-      >
+    <DefaultLayout
+      title="Income and Expenses"
+      subtitle="Money increase and decrease"
+    >
+      {isLoading ? (
         <div>
           <Form>
             <Form.Item label={'Доходи'}>
@@ -96,7 +104,7 @@ const IncomeExpenses: FC = () => {
                 <Flex>
                   <Input
                     onChange={(e) => {
-                      setAmountRavenue(e.target.value);
+                      setAmountIncomes(e.target.value);
                     }}
                   />
                   <button
@@ -162,8 +170,12 @@ const IncomeExpenses: FC = () => {
             </button>
           </Form>
         </div>
-      </DefaultLayout>
-    </div>
+      ) : (
+        <Flex justify="center">
+          <Spin size="large" />
+        </Flex>
+      )}
+    </DefaultLayout>
   );
 };
 
