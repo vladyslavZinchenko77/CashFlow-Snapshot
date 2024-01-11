@@ -12,7 +12,7 @@ const News: FC = () => {
       <h2 className="news__title section__title">Newsletter</h2>
       <p className="news__subtitle section__subtitle">
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Eget ac quis
-        aliquam arcu lacus.
+        aliquam arcu lacus...
       </p>
       <Form>
         <Form.Item>
