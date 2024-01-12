@@ -18,52 +18,7 @@ body,
 }
 
 
-// LINK
 
-  .link-btn{
-    border-radius: 4px;
-    padding: 8px 20px;
-    background: $dark-blue;
-    color: $white;
-    text-decoration: none;
-    text-align: center;
-    font-size: 12px;
-    font-style: normal;
-    font-weight: 500;
-    line-height: 166%; 
-    letter-spacing: 2px;
-    cursor: pointer;
-    opacity: 1;
-    transition: 0.2s;
-    &:hover{
-      opacity: 0.7;
-      transition: 0.2s;
-    }
-  }
-
-  .btn{
-    border-radius: 4px;
-    padding: 8px 20px;
-    background: $dark-blue;
-    color: $white;
-    text-decoration: none;
-    text-align: center;
-    font-size: 12px;
-    font-style: normal;
-    font-weight: 500;
-    line-height: 166%; 
-    letter-spacing: 2px;
-    box-shadow: none;
-    outline: none;
-    border: none;
-    cursor: pointer;
-    opacity: 1;
-    transition: 0.2s;
-    &:hover{
-      opacity: 0.7;
-      transition: 0.2s;
-    }
-  }
 
 // LANDING
 
@@ -86,3 +41,61 @@ body,
   line-height: 137%; 
 }
 
+// LINK
+
+.link-btn{
+  border-radius: 4px;
+  padding: 8px 20px;
+  background: $dark-blue;
+  color: $white;
+  text-decoration: none;
+  text-align: center;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 166%; 
+  letter-spacing: 2px;
+  cursor: pointer;
+  opacity: 1;
+  transition: 0.2s;
+  &:hover{
+    opacity: 0.7;
+    transition: 0.2s;
+  }
+}
+
+.btn{
+  border-radius: 4px;
+  padding: 8px 20px;
+  background: $dark-blue;
+  color: $white;
+  text-decoration: none;
+  text-align: center;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 166%; 
+  letter-spacing: 2px;
+  box-shadow: none;
+  outline: none;
+  border: none;
+  cursor: pointer;
+  opacity: 1;
+  transition: 0.2s;
+  &:hover{
+    opacity: 0.7;
+    transition: 0.2s;
+  }
+}
+
+// INPUTS
+
+.dashboard__input{
+  padding: 12px;
+  border: 2px solid black;
+  font-size: 16px;
+}
+.ant-form-item .ant-form-item-label >label{
+padding: 8px;
+font-size: 24px;
+} 

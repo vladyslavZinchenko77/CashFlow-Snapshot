@@ -1,6 +1,6 @@
 import { Routes, Route } from 'react-router-dom';
 import { AppProvider } from './context/AppContext';
-import Home from './pages/Home';
+import Home from './pages/General';
 import Statistics from './pages/Statistics/Statistics';
 import IncomeExpenses from './pages/IncomeExpenses';
 import Settings from './pages/Settings';

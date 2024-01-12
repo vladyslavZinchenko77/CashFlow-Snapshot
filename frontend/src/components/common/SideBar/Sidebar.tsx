@@ -39,7 +39,7 @@ const Sidebar: FC = () => {
               onClick={() => setActiveTab(1)}
             >
               <HomeOutlined style={{ marginRight: 10 }} />
-              Загальна Інформація
+              General
             </NavLink>
           </li>
           <li
