@@ -100,7 +100,7 @@ const Sidebar: FC = () => {
               onClick={() => setActiveTab(5)}
             >
               <SettingOutlined style={{ marginRight: 10 }} />
-              Налаштування
+              Settings
             </Link>
           </li>
           <li
