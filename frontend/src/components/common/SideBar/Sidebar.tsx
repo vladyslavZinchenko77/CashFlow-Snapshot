@@ -55,7 +55,7 @@ const Sidebar: FC = () => {
               onClick={() => setActiveTab(2)}
             >
               <DollarOutlined style={{ marginRight: 10 }} />
-              Доходи та Витрати
+              Incomes & Expenses
             </NavLink>
           </li>
           <li
