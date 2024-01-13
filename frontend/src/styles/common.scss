@@ -92,13 +92,12 @@ body,
 
 .dashboard__input{
   padding: 12px;
-  border: 2px solid black;
+  border: 2px solid $dark-blue;
   font-size: 16px;
 }
 .dashboard__input--with-btn{
   padding: 12px;
-  border: 2px solid black;
-  font-size: 16px;
+  border: 2px solid $dark-blue;
   border-top-right-radius: 0;
   border-bottom-right-radius: 0;
 }

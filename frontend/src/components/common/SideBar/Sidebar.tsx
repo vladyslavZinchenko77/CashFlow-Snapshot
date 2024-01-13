@@ -71,7 +71,7 @@ const Sidebar: FC = () => {
               onClick={() => setActiveTab(3)}
             >
               <LineChartOutlined style={{ marginRight: 10 }} />
-              Статистика
+              Statistics
             </NavLink>
           </li>
           <li
@@ -84,7 +84,7 @@ const Sidebar: FC = () => {
           >
             <Link to={'/dashboard/goals'} className="sidebar__list-item--link">
               <CreditCardOutlined style={{ marginRight: 10 }} />
-              Цілі та Бюджетування
+              Goals and Budgets
             </Link>
           </li>
           <li
@@ -112,7 +112,7 @@ const Sidebar: FC = () => {
           >
             <a href="" onClick={exit} className="sidebar__list-item--link">
               <LoginOutlined style={{ marginRight: 10 }} />
-              Вийти
+              Exit
             </a>
           </li>
         </ul>

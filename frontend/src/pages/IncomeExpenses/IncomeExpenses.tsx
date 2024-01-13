@@ -161,24 +161,26 @@ const IncomeExpenses: FC = () => {
               </Flex>
             </Form.Item>
           )}
-          <button
-            className="btn"
-            type="button"
-            onClick={() => {
-              setAddIncomes(true);
-            }}
-          >
-            Додати доходи
-          </button>
-          <button
-            className="btn"
-            type="button"
-            onClick={() => {
-              setAddExpenses(true);
-            }}
-          >
-            Додати витрати
-          </button>
+          <Flex justify="space-between">
+            <button
+              className="btn"
+              type="button"
+              onClick={() => {
+                setAddIncomes(true);
+              }}
+            >
+              Add incomes
+            </button>
+            <button
+              className="btn"
+              type="button"
+              onClick={() => {
+                setAddExpenses(true);
+              }}
+            >
+              Add expenses
+            </button>
+          </Flex>
         </Form>
       ) : (
         <Flex justify="center">
