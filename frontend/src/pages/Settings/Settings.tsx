@@ -1,5 +1,5 @@
 import { FC, useEffect, useState } from 'react';
-import { Spin, Flex, Form, Input, Button } from 'antd';
+import { Spin, Flex, Form, Input } from 'antd';
 import DefaultLayout from '../../components/common/DefaultLayout';
 
 const Settings: FC = () => {
@@ -118,9 +118,9 @@ const Settings: FC = () => {
             </Form.Item>
 
             <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
-              <Button type="primary" htmlType="submit">
+              <button className="btn" type="submit">
                 Submit
-              </Button>
+              </button>
             </Form.Item>
           </Form>
         ) : (
