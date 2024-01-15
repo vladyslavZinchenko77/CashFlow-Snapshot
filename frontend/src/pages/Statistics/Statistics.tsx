@@ -10,7 +10,7 @@ const Statistics: FC = () => {
   useEffect(() => {
     const timeout = setTimeout(() => {
       setIsloading(true);
-    }, 1000);
+    }, 500);
     return () => clearTimeout(timeout);
   }, []);
 

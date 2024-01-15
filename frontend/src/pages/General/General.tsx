@@ -6,9 +6,7 @@ import DefaultLayout from '../../components/common/DefaultLayout';
 import './General.scss';
 
 const General: FC = () => {
-  const { incomesValue, expensesValue } = useAppContext();
-
-  let balanceValue: number = 27000;
+  const { incomesValue, expensesValue, balanceValue } = useAppContext();
 
   return (
     <DefaultLayout

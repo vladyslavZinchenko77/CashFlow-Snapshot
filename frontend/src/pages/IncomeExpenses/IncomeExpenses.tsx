@@ -10,8 +10,10 @@ const IncomeExpenses: FC = () => {
   const {
     incomesValue,
     expensesValue,
+    balanceValue,
     updateExpensesValue,
     updateIncomesValue,
+    updateBalanceValue,
   } = useAppContext();
   const [addIncomes, setAddIncomes] = useState<boolean>(false);
   const [addExpenses, setAddExpenses] = useState<boolean>(false);
@@ -31,7 +33,7 @@ const IncomeExpenses: FC = () => {
   useEffect(() => {
     const timeout = setTimeout(() => {
       setIsloading(true);
-    }, 1000);
+    }, 500);
     return () => clearTimeout(timeout);
   }, []);
 
@@ -45,7 +47,9 @@ const IncomeExpenses: FC = () => {
     if (!isNaN(numericAmountIncomes)) {
       // Проверка на NaN
       let newAmountRevenue = numericAmountIncomes + incomesValue;
+      let newAmountBalance = balanceValue + numericAmountIncomes;
       updateIncomesValue(newAmountRevenue);
+      updateBalanceValue(newAmountBalance);
     }
     setAddIncomes(false);
   };
@@ -60,7 +64,9 @@ const IncomeExpenses: FC = () => {
     if (!isNaN(numericAmountExpenses)) {
       // Проверка на NaN
       let newAmountExpenses = numericAmountExpenses + expensesValue;
+      let newAmountBalance = balanceValue - numericAmountExpenses;
       updateExpensesValue(newAmountExpenses);
+      updateBalanceValue(newAmountBalance);
     }
     setAddExpenses(false);
   };
