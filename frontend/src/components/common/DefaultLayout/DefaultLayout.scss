@@ -1,12 +1,15 @@
 .default-layout{
     display: flex;
+    margin: 24px 0 0 280px;
     .default-layout__content{
         padding: 24px;
+        
     }
     .default-layout__title{
         text-transform: capitalize;
     }
     .default-layout__content-wrap{
         margin: 24px;
+        
     }
 }
