@@ -1,4 +1,10 @@
-import React, { createContext, useContext, useState, ReactNode } from 'react';
+import React, {
+  createContext,
+  useContext,
+  useState,
+  ReactNode,
+  useEffect,
+} from 'react';
 
 interface AppContextProps {
   children: ReactNode;
@@ -24,19 +30,34 @@ export const useAppContext = (): AppContextValues => {
 };
 
 export const AppProvider: React.FC<AppContextProps> = ({ children }) => {
-  const [incomesValue, setIncomesValue] = useState<number>(0);
-  const [expensesValue, setExpensesValue] = useState<number>(0);
-  const [balanceValue, setBalanceValue] = useState<number>(0);
+  const [incomesValue, setIncomesValue] = useState<number>(() => {
+    const storedValue = localStorage.getItem('incomesValue');
+    return storedValue ? parseFloat(storedValue) : 0;
+  });
+
+  const [expensesValue, setExpensesValue] = useState<number>(() => {
+    const storedValue = localStorage.getItem('expensesValue');
+    return storedValue ? parseFloat(storedValue) : 0;
+  });
+
+  const [balanceValue, setBalanceValue] = useState<number>(() => {
+    const storedValue = localStorage.getItem('balanceValue');
+    return storedValue ? parseFloat(storedValue) : 0;
+  });
 
   const updateIncomesValue = (value: number) => {
     setIncomesValue(value);
+    localStorage.setItem('incomesValue', value.toString());
   };
 
   const updateExpensesValue = (value: number) => {
     setExpensesValue(value);
+    localStorage.setItem('expensesValue', value.toString());
   };
+
   const updateBalanceValue = (value: number) => {
     setBalanceValue(value);
+    localStorage.setItem('balanceValue', value.toString());
   };
 
   const contextValues: AppContextValues = {
@@ -47,6 +68,12 @@ export const AppProvider: React.FC<AppContextProps> = ({ children }) => {
     updateExpensesValue,
     updateBalanceValue,
   };
+
+  useEffect(() => {
+    localStorage.setItem('incomesValue', incomesValue.toString());
+    localStorage.setItem('expensesValue', expensesValue.toString());
+    localStorage.setItem('balanceValue', balanceValue.toString());
+  }, [incomesValue, expensesValue, balanceValue]);
 
   return (
     <AppContext.Provider value={contextValues}>{children}</AppContext.Provider>
