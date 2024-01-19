@@ -1,4 +1,5 @@
-import React, {
+import {
+  FC,
   createContext,
   useContext,
   useState,
@@ -14,9 +15,20 @@ interface AppContextValues {
   incomesValue: number;
   expensesValue: number;
   balanceValue: number;
+  user: User;
   updateIncomesValue: (value: number) => void;
   updateExpensesValue: (value: number) => void;
   updateBalanceValue: (value: number) => void;
+  updateUserValue: (value: User) => void;
+}
+
+interface User {
+  email: string;
+  password: string;
+  name: string;
+  lastName: string;
+  phoneNumber: number;
+  country: string;
 }
 
 const AppContext = createContext<AppContextValues | undefined>(undefined);
@@ -29,7 +41,7 @@ export const useAppContext = (): AppContextValues => {
   return context;
 };
 
-export const AppProvider: React.FC<AppContextProps> = ({ children }) => {
+export const AppProvider: FC<AppContextProps> = ({ children }) => {
   const [incomesValue, setIncomesValue] = useState<number>(() => {
     const storedValue = localStorage.getItem('incomesValue');
     return storedValue ? parseFloat(storedValue) : 0;
@@ -45,6 +57,16 @@ export const AppProvider: React.FC<AppContextProps> = ({ children }) => {
     return storedValue ? parseFloat(storedValue) : 0;
   });
 
+  //  USER
+
+  const [user, setUser] = useState<User>(() => {
+    const storedUser = localStorage.getItem('userValue');
+    return storedUser
+      ? JSON.parse(storedUser)
+      : { email: '', password: '', name: '', lastName: '' };
+  });
+
+  //  UPDATED FUNCTIONS
   const updateIncomesValue = (value: number) => {
     setIncomesValue(value);
     localStorage.setItem('incomesValue', value.toString());
@@ -59,17 +81,23 @@ export const AppProvider: React.FC<AppContextProps> = ({ children }) => {
     setBalanceValue(value);
     localStorage.setItem('balanceValue', value.toString());
   };
-
+  const updateUserValue = (value: User) => {
+    setUser(value);
+    localStorage.setItem('userValue', value.toString());
+  };
   const contextValues: AppContextValues = {
     incomesValue,
     expensesValue,
     balanceValue,
+    user,
     updateIncomesValue,
     updateExpensesValue,
     updateBalanceValue,
+    updateUserValue,
   };
 
   useEffect(() => {
+    localStorage.setItem('user', JSON.stringify(user));
     localStorage.setItem('incomesValue', incomesValue.toString());
     localStorage.setItem('expensesValue', expensesValue.toString());
     localStorage.setItem('balanceValue', balanceValue.toString());
