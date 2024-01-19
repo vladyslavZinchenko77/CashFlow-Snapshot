@@ -63,7 +63,12 @@ export const AppProvider: FC<AppContextProps> = ({ children }) => {
     const storedUser = localStorage.getItem('userValue');
     return storedUser
       ? JSON.parse(storedUser)
-      : { email: '', password: '', name: '', lastName: '' };
+      : {
+          email: 'test@gmail.com',
+          password: '10vivelo',
+          name: '',
+          lastName: '',
+        };
   });
 
   //  UPDATED FUNCTIONS
@@ -83,7 +88,7 @@ export const AppProvider: FC<AppContextProps> = ({ children }) => {
   };
   const updateUserValue = (value: User) => {
     setUser(value);
-    localStorage.setItem('userValue', value.toString());
+    localStorage.setItem('userValue', JSON.stringify(user));
   };
   const contextValues: AppContextValues = {
     incomesValue,
@@ -97,11 +102,11 @@ export const AppProvider: FC<AppContextProps> = ({ children }) => {
   };
 
   useEffect(() => {
-    localStorage.setItem('user', JSON.stringify(user));
+    localStorage.setItem('userValue', JSON.stringify(user));
     localStorage.setItem('incomesValue', incomesValue.toString());
     localStorage.setItem('expensesValue', expensesValue.toString());
     localStorage.setItem('balanceValue', balanceValue.toString());
-  }, [incomesValue, expensesValue, balanceValue]);
+  }, [incomesValue, expensesValue, balanceValue, user]);
 
   return (
     <AppContext.Provider value={contextValues}>{children}</AppContext.Provider>

@@ -1,9 +1,12 @@
 import { FC, useEffect, useState } from 'react';
 import { Spin, Flex, Form, Input } from 'antd';
+import { useAppContext } from '../../context/AppContext';
 import DefaultLayout from '../../components/common/DefaultLayout';
 
 const Settings: FC = () => {
   const [isLoading, setIsloading] = useState<boolean>(false);
+  const { user, updateUserValue } = useAppContext();
+
   useEffect(() => {
     const timeout = setTimeout(() => {
       setIsloading(true);
@@ -13,6 +16,16 @@ const Settings: FC = () => {
 
   const onFinish = (values: any) => {
     console.log('Success:', values);
+    updateUserValue({
+      ...user,
+      email: values.email,
+      password:
+        values.password === values.confirmPassword && '' ? values.password : '',
+      name: values.firstName,
+      lastName: values.lastName,
+      phoneNumber: values.phoneNumber,
+      country: values.country,
+    });
   };
 
   const onFinishFailed = (errorInfo: any) => {
@@ -59,7 +72,7 @@ const Settings: FC = () => {
                 },
               ]}
             >
-              <Input />
+              <Input defaultValue={user.email} />
             </Form.Item>
 
             <Form.Item<FieldType>
@@ -69,7 +82,10 @@ const Settings: FC = () => {
                 { required: true, message: 'Please input your password!' },
               ]}
             >
-              <Input.Password />
+              <Input.Password
+                defaultValue={user.password}
+                value={user.password}
+              />
             </Form.Item>
 
             <Form.Item<FieldType>
@@ -94,19 +110,19 @@ const Settings: FC = () => {
                 }),
               ]}
             >
-              <Input.Password />
+              <Input.Password defaultValue={user.password} />
             </Form.Item>
 
             <Form.Item<FieldType> label="First Name" name="firstName">
-              <Input />
+              <Input defaultValue={user.name} />
             </Form.Item>
 
             <Form.Item<FieldType> label="Last Name" name="lastName">
-              <Input />
+              <Input defaultValue={user.lastName} />
             </Form.Item>
 
             <Form.Item<FieldType> label="Phone Number" name="phoneNumber">
-              <Input />
+              <Input defaultValue={user.phoneNumber} />
             </Form.Item>
 
             <Form.Item<FieldType> label="Birthdate" name="birthdate">
@@ -114,7 +130,7 @@ const Settings: FC = () => {
             </Form.Item>
 
             <Form.Item<FieldType> label="Country" name="country">
-              <Input />
+              <Input defaultValue={user.country} />
             </Form.Item>
 
             <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
