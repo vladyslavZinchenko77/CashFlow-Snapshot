@@ -102,9 +102,10 @@ body,
   border-bottom-right-radius: 0;
 }
 .ant-form-item .ant-form-item-label >label{
-padding: 8px;
+padding: 8px 8px 0 8px;
 font-size: 16px;
 } 
+
 
 
 .css-dev-only-do-not-override-6j9yrn.ant-select.ant-select-in-form-item {
@@ -112,4 +113,17 @@ font-size: 16px;
   height: 52px;
   border: 2px solid black;
   border-radius: 8px;
+}
+
+
+// DASHBOARD
+
+.dashboard-title{
+  padding: 8px 0 0;
+  color: $title-text;
+  text-align: center;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 119%; 
 }
