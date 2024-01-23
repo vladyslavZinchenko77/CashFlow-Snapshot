@@ -27,7 +27,7 @@ interface User {
   password: string;
   name: string;
   lastName: string;
-  phoneNumber: number;
+  phoneNumber: number | string;
   country: string;
 }
 

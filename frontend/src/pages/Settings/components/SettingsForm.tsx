@@ -10,7 +10,6 @@ const SettingsForm: FC = () => {
   const [edit, setEdit] = useState<boolean>(false);
 
   const onSubmittForm = () => {
-    console.log(email, password, confirmPassword);
     updateUserValue({
       ...user,
       email: email,
@@ -60,8 +59,9 @@ const SettingsForm: FC = () => {
             {edit ? (
               <button
                 className="btn"
-                type="submit"
+                type="button"
                 onClick={() => {
+                  onSubmittForm();
                   setEdit(false);
                 }}
               >
