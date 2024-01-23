@@ -14,16 +14,22 @@ type FieldType = {
 };
 
 const UserInfoForm: FC = () => {
-  const [isEditInfo, setIsEditInfo] = useState<boolean>(false);
   const { user, updateUserValue } = useAppContext();
+  const [edit, setEdit] = useState<boolean>(false);
+  const [name, setName] = useState<string>(user.name);
+  const [lastName, setLastName] = useState<string>(user.lastName);
+  const [phoneNumber, setPhoneNumber] = useState<number | string>(
+    user.phoneNumber
+  );
+  const [country, setCountry] = useState<string>(user.country);
 
-  const saveUserInfo = (values: any) => {
+  const saveUserInfo = () => {
     updateUserValue({
       ...user,
-      name: values.firstName,
-      lastName: values.lastName,
-      phoneNumber: values.phoneNumber,
-      country: values.country,
+      name: name,
+      lastName: lastName,
+      phoneNumber: phoneNumber,
+      country: country,
     });
   };
 
@@ -36,52 +42,67 @@ const UserInfoForm: FC = () => {
         labelCol={{ span: 24 }}
         wrapperCol={{ span: 24 }}
         style={{ width: 300, marginTop: 24 }}
-        initialValues={{ remember: true }}
         onFinish={saveUserInfo}
         autoComplete="off"
       >
         <Form.Item<FieldType> label="First Name" name="firstName">
           <Input
             defaultValue={user.name}
-            value={user.name}
-            disabled={!isEditInfo}
+            disabled={!edit}
+            onChange={(e) => {
+              setName(e.target.value);
+            }}
           />
         </Form.Item>
 
         <Form.Item<FieldType> label="Last Name" name="lastName">
-          <Input defaultValue={user.lastName} disabled={!isEditInfo} />
+          <Input
+            defaultValue={user.lastName}
+            disabled={!edit}
+            onChange={(e) => {
+              setLastName(e.target.value);
+            }}
+          />
         </Form.Item>
 
         <Form.Item<FieldType> label="Phone Number" name="phoneNumber">
-          <Input defaultValue={user.phoneNumber} disabled={!isEditInfo} />
+          <Input
+            defaultValue={user.phoneNumber}
+            disabled={!edit}
+            onChange={(e) => {
+              setPhoneNumber(e.target.value);
+            }}
+          />
         </Form.Item>
 
         <Form.Item<FieldType> label="Birthdate" name="birthdate">
-          <Input type="date" disabled={!isEditInfo} />
+          <Input type="date" disabled={!edit} />
         </Form.Item>
 
         <Form.Item<FieldType> label="Country" name="country">
-          <Input defaultValue={user.country} disabled={!isEditInfo} />
+          <Input
+            defaultValue={user.country}
+            disabled={!edit}
+            onChange={(e) => {
+              setCountry(e.target.value);
+            }}
+          />
         </Form.Item>
 
         <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
-          {isEditInfo ? (
+          {edit ? (
             <button
               className="btn"
               type="button"
-              onClick={(values) => {
-                saveUserInfo(values);
-                setIsEditInfo(false);
+              onClick={() => {
+                saveUserInfo();
+                setEdit(false);
               }}
             >
               Save
             </button>
           ) : (
-            <button
-              className="btn"
-              type="button"
-              onClick={() => setIsEditInfo(true)}
-            >
+            <button className="btn" type="button" onClick={() => setEdit(true)}>
               Edit
             </button>
           )}
