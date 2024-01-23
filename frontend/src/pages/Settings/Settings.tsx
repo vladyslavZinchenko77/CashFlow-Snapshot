@@ -1,6 +1,6 @@
 import { FC, useEffect, useState } from 'react';
 import { Spin, Flex } from 'antd';
-import UserInfoForm from './components/UserInfoForm';
+// import UserInfoForm from './components/UserInfoForm';
 
 import SettingsForm from './components/SettingsForm';
 import DefaultLayout from '../../components/common/DefaultLayout';
@@ -24,7 +24,7 @@ const Settings: FC = () => {
         {isLoading ? (
           <div>
             <SettingsForm />
-            <UserInfoForm />
+            {/* <UserInfoForm /> */}
           </div>
         ) : (
           <Flex justify="center">
