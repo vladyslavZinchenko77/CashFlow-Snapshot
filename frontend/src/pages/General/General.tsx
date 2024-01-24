@@ -6,7 +6,12 @@ import DefaultLayout from '../../components/common/DefaultLayout';
 import './General.scss';
 
 const General: FC = () => {
-  const { incomesValue, expensesValue, balanceValue } = useAppContext();
+  const { incomesValue, expensesValue, balanceValue, user } = useAppContext();
+
+  let hiUserText =
+    user.name && user.lastName
+      ? '👋 Hi , ' + user.name + ' ' + user.lastName + '!'
+      : '👋 Hi , ' + user.email + '!';
 
   return (
     <DefaultLayout
@@ -14,10 +19,14 @@ const General: FC = () => {
       subtitle="Here you can see general information"
     >
       <div className="home">
+        <h2 className="dashboard-title" style={{ textAlign: 'left' }}>
+          {hiUserText}
+        </h2>
         <Form layout="horizontal" className="home__form">
           <Form.Item className="home__form-item" label="Incomes">
             <Input className="dashboard__input" readOnly value={incomesValue} />
           </Form.Item>
+
           <Form.Item className="home__form-item" label="Expenses">
             <Input
               className="dashboard__input"
