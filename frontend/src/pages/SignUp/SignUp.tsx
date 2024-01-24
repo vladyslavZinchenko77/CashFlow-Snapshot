@@ -2,17 +2,10 @@ import { FC } from 'react';
 import { Button, Form, Input } from 'antd';
 import { Link } from 'react-router-dom';
 import { HomeOutlined } from '@ant-design/icons';
+import { useAppContext } from '../../context/AppContext';
 import moneyImg from '../../assets/img/money.svg';
 
 import './SignUp.scss';
-
-const onFinish = (values: any) => {
-  console.log('Success:', values);
-};
-
-const onFinishFailed = (errorInfo: any) => {
-  console.log('Failed:', errorInfo);
-};
 
 type FieldType = {
   password?: string;
@@ -26,6 +19,24 @@ type FieldType = {
 };
 
 const SignUp: FC = () => {
+  const { user, updateUserValue } = useAppContext();
+
+  const onFinish = (values: any) => {
+    console.log('Success:', values);
+    values.email,
+      updateUserValue({
+        ...user,
+        email: values.email,
+        name: values.name,
+        lastName: values.lastName,
+        password: values.password,
+      });
+  };
+
+  const onFinishFailed = (errorInfo: any) => {
+    console.log('Failed:', errorInfo);
+  };
+
   return (
     <div className="sign-up">
       <Link to="/" className="sign-up__back-home">
