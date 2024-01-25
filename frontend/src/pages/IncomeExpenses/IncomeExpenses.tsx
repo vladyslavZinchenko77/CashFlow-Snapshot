@@ -2,14 +2,14 @@ import { FC, useState, useEffect } from 'react';
 import { Form, Input, Flex, Select, Spin } from 'antd';
 import { useAppContext } from '../../context/AppContext';
 import DefaultLayout from '../../components/common/DefaultLayout';
-import { ArrowDownOutlined, CreditCardOutlined } from '@ant-design/icons';
+import { CreditCardOutlined } from '@ant-design/icons';
+import IncomesList from './components/IncomesList';
 
 import './IncomeExpenses.scss';
 
 const IncomeExpenses: FC = () => {
   const [isLoading, setIsloading] = useState<boolean>(false);
   const {
-    incomes,
     incomesValue,
     expensesValue,
     balanceValue,
@@ -206,17 +206,7 @@ const IncomeExpenses: FC = () => {
               </button>
             </Flex>
           </Form>
-
-          {incomes &&
-            incomes.map((item, index) => (
-              <ul style={{ marginTop: 24 }} key={index}>
-                <li>
-                  <ArrowDownOutlined style={{ color: 'green' }} />
-                  {item.amount} {'uah'}, <strong>Type:</strong> {item.type},{' '}
-                  <strong>Date:</strong> {item.date.toString()}
-                </li>
-              </ul>
-            ))}
+          <IncomesList />
         </div>
       ) : (
         <Flex justify="center">
