@@ -12,10 +12,12 @@ interface AppContextProps {
 }
 
 interface AppContextValues {
+  incomes: Income[];
   incomesValue: number;
   expensesValue: number;
   balanceValue: number;
   user: User;
+  updateIncomes: (value: Income) => void;
   updateIncomesValue: (value: number) => void;
   updateExpensesValue: (value: number) => void;
   updateBalanceValue: (value: number) => void;
@@ -29,6 +31,12 @@ interface User {
   lastName: string;
   phoneNumber: number | string;
   country: string;
+}
+
+interface Income {
+  amount: number | string | undefined;
+  date: string;
+  type: string | undefined;
 }
 
 const AppContext = createContext<AppContextValues | undefined>(undefined);
@@ -56,7 +64,10 @@ export const AppProvider: FC<AppContextProps> = ({ children }) => {
     const storedValue = localStorage.getItem('balanceValue');
     return storedValue ? parseFloat(storedValue) : 0;
   });
-
+  const [incomes, setIncomes] = useState<Income[]>(() => {
+    const storedIncomes = localStorage.getItem('incomes');
+    return storedIncomes ? JSON.parse(storedIncomes) : [];
+  });
   //  USER
 
   const [user, setUser] = useState<User>(() => {
@@ -90,11 +101,18 @@ export const AppProvider: FC<AppContextProps> = ({ children }) => {
     setUser(value);
     localStorage.setItem('userValue', JSON.stringify(user));
   };
+  const updateIncomes = (income: Income) => {
+    setIncomes((prevIncomes) => [...prevIncomes, income]);
+    localStorage.setItem('incomes', JSON.stringify([...incomes, income]));
+    console.log('Incomes updated:', [...incomes, income]);
+  };
   const contextValues: AppContextValues = {
+    incomes,
     incomesValue,
     expensesValue,
     balanceValue,
     user,
+    updateIncomes,
     updateIncomesValue,
     updateExpensesValue,
     updateBalanceValue,
@@ -102,11 +120,12 @@ export const AppProvider: FC<AppContextProps> = ({ children }) => {
   };
 
   useEffect(() => {
+    localStorage.setItem('incomes', JSON.stringify(incomes));
     localStorage.setItem('userValue', JSON.stringify(user));
     localStorage.setItem('incomesValue', incomesValue.toString());
     localStorage.setItem('expensesValue', expensesValue.toString());
     localStorage.setItem('balanceValue', balanceValue.toString());
-  }, [incomesValue, expensesValue, balanceValue, user]);
+  }, [incomesValue, expensesValue, balanceValue, user, incomes]);
 
   return (
     <AppContext.Provider value={contextValues}>{children}</AppContext.Provider>

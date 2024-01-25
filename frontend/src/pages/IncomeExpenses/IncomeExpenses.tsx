@@ -1,7 +1,9 @@
 import { FC, useState, useEffect } from 'react';
-import { Form, Input, Flex, Select, Spin } from 'antd';
+import { Form, Input, Flex, Select, Spin, Row, Col } from 'antd';
 import { useAppContext } from '../../context/AppContext';
 import DefaultLayout from '../../components/common/DefaultLayout';
+import { CreditCardOutlined } from '@ant-design/icons';
+import IncomesList from './components/IncomesList';
 
 import './IncomeExpenses.scss';
 
@@ -11,6 +13,7 @@ const IncomeExpenses: FC = () => {
     incomesValue,
     expensesValue,
     balanceValue,
+    updateIncomes,
     updateExpensesValue,
     updateIncomesValue,
     updateBalanceValue,
@@ -50,6 +53,20 @@ const IncomeExpenses: FC = () => {
       let newAmountBalance = balanceValue + numericAmountIncomes;
       updateIncomesValue(newAmountRevenue);
       updateBalanceValue(newAmountBalance);
+      updateIncomes({
+        amount: amountIncomes,
+        date: new Date().toLocaleString('en-US', {
+          year: 'numeric',
+          month: '2-digit',
+          day: '2-digit',
+          hour: '2-digit',
+          minute: '2-digit',
+          second: '2-digit',
+          hour12: false,
+        }),
+
+        type: typeofIncomes,
+      });
     }
     setAddIncomes(false);
   };
@@ -77,53 +94,41 @@ const IncomeExpenses: FC = () => {
       subtitle="Money increase and decrease"
     >
       {isLoading ? (
-        <Form>
-          <Form.Item label={'Incomes'}>
-            <Input
-              className="dashboard__input"
-              name="incomes"
-              readOnly
-              value={incomesValue}
-            />
-          </Form.Item>
-          <Form.Item label={'Expenses'}>
-            <Input
-              className="dashboard__input"
-              name="incomes"
-              readOnly
-              value={expensesValue}
-            />
-          </Form.Item>
-          {addIncomes && (
-            <Form.Item>
-              <h2>Incomes</h2>
-              <Form.Item label={'Type of incomes'} style={{ marginTop: 24 }}>
-                <Select
-                  defaultValue={typeofIncomes}
-                  onChange={(value) => {
-                    setTypeofIncomes(value);
-                  }}
-                >
-                  <Select.Option value="Заробітня плата">
-                    Заробітня плата
-                  </Select.Option>
-                  <Select.Option value="Здача нерухомості">
-                    Здача нерухомості
-                  </Select.Option>
-                  <Select.Option value="Відсотки по депозиту">
-                    Відсотки по депозиту
-                  </Select.Option>
-                  <Select.Option value="Інше">Інше</Select.Option>
-                </Select>
-              </Form.Item>
-              <Flex>
+        <div>
+          <Form layout="vertical">
+            <Row gutter={[16, 24]}>
+              <Col>
+                <h2>Incomes</h2>
+                <Form.Item label={'Type of incomes'} style={{ marginTop: 8 }}>
+                  <Select
+                    defaultValue={typeofIncomes}
+                    onChange={(value) => {
+                      setTypeofIncomes(value);
+                    }}
+                  >
+                    <Select.Option value="Заробітня плата">
+                      <CreditCardOutlined /> Заробітня плата
+                    </Select.Option>
+                    <Select.Option value="Здача нерухомості">
+                      Здача нерухомості
+                    </Select.Option>
+                    <Select.Option value="Відсотки по депозиту">
+                      Відсотки по депозиту
+                    </Select.Option>
+                    <Select.Option value="Інше">Інше</Select.Option>
+                  </Select>
+                </Form.Item>
+
                 <Input
-                  className="dashboard__input--with-btn"
+                  defaultValue={0}
+                  className="dashboard__input"
                   onChange={(e) => {
                     setAmountIncomes(e.target.value);
                   }}
                 />
+
                 <button
+                  style={{ marginTop: 24 }}
                   className="btn"
                   onClick={() => {
                     addIncomesHandle();
@@ -131,63 +136,52 @@ const IncomeExpenses: FC = () => {
                 >
                   add income
                 </button>
-              </Flex>
-            </Form.Item>
-          )}
-          {addExpenses && (
-            <Form.Item>
-              <h2>Expenses</h2>
-              <Form.Item label={'Type of expenses'} style={{ marginTop: 24 }}>
-                <Select
-                  defaultValue={typeofExpenses}
-                  onChange={(value) => {
-                    setTypeofExpenses(value);
-                  }}
-                >
-                  <Select.Option value="Продукти">Продукти</Select.Option>
-                  <Select.Option value="Комунальні платежі">
-                    Комунальні платежі
-                  </Select.Option>
-                  <Select.Option value="Заправка автомобіля">
-                    Заправка автомобіля
-                  </Select.Option>
-                  <Select.Option value="Інше">Інше</Select.Option>
-                </Select>
-              </Form.Item>
-              <Flex>
-                <Input
-                  className="dashboard__input--with-btn"
-                  onChange={(e) => {
-                    setAmountExpenses(e.target.value);
-                  }}
-                />
-                <button className="btn" onClick={() => addExpensesHandle()}>
-                  add expenses
-                </button>
-              </Flex>
-            </Form.Item>
-          )}
-          <Flex justify="space-between">
-            <button
-              className="btn"
-              type="button"
-              onClick={() => {
-                setAddIncomes(true);
-              }}
-            >
-              Add incomes
-            </button>
-            <button
-              className="btn"
-              type="button"
-              onClick={() => {
-                setAddExpenses(true);
-              }}
-            >
-              Add expenses
-            </button>
-          </Flex>
-        </Form>
+              </Col>
+
+              <Col>
+                <Form.Item>
+                  <h2>Expenses</h2>
+                  <Form.Item
+                    label={'Type of expenses'}
+                    style={{ marginTop: 8 }}
+                  >
+                    <Select
+                      defaultValue={typeofExpenses}
+                      onChange={(value) => {
+                        setTypeofExpenses(value);
+                      }}
+                    >
+                      <Select.Option value="Продукти">Продукти</Select.Option>
+                      <Select.Option value="Комунальні платежі">
+                        Комунальні платежі
+                      </Select.Option>
+                      <Select.Option value="Заправка автомобіля">
+                        Заправка автомобіля
+                      </Select.Option>
+                      <Select.Option value="Інше">Інше</Select.Option>
+                    </Select>
+                  </Form.Item>
+
+                  <Input
+                    defaultValue={0}
+                    className="dashboard__input"
+                    onChange={(e) => {
+                      setAmountExpenses(e.target.value);
+                    }}
+                  />
+                  <button
+                    className="btn"
+                    style={{ marginTop: 24 }}
+                    onClick={() => addExpensesHandle()}
+                  >
+                    add expenses
+                  </button>
+                </Form.Item>
+              </Col>
+            </Row>
+          </Form>
+          <IncomesList />
+        </div>
       ) : (
         <Flex justify="center">
           <Spin size="large" />
