@@ -34,9 +34,9 @@ interface User {
 }
 
 interface Income {
-  amount: number;
+  amount: number | string | undefined;
   date: Date;
-  type: string;
+  type: string | undefined;
 }
 
 const AppContext = createContext<AppContextValues | undefined>(undefined);
@@ -104,6 +104,7 @@ export const AppProvider: FC<AppContextProps> = ({ children }) => {
   const updateIncomes = (income: Income) => {
     setIncomes((prevIncomes) => [...prevIncomes, income]);
     localStorage.setItem('incomes', JSON.stringify([...incomes, income]));
+    console.log('Incomes updated:', [...incomes, income]);
   };
   const contextValues: AppContextValues = {
     incomes,
