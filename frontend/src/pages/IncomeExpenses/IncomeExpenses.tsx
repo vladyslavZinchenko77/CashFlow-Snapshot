@@ -1,5 +1,5 @@
 import { FC, useState, useEffect } from 'react';
-import { Form, Input, Flex, Select, Spin } from 'antd';
+import { Form, Input, Flex, Select, Spin, Row, Col } from 'antd';
 import { useAppContext } from '../../context/AppContext';
 import DefaultLayout from '../../components/common/DefaultLayout';
 import { CreditCardOutlined } from '@ant-design/icons';
@@ -95,27 +95,11 @@ const IncomeExpenses: FC = () => {
     >
       {isLoading ? (
         <div>
-          <Form>
-            <Form.Item label={'Incomes'}>
-              <Input
-                className="dashboard__input"
-                name="incomes"
-                readOnly
-                value={incomesValue}
-              />
-            </Form.Item>
-            <Form.Item label={'Expenses'}>
-              <Input
-                className="dashboard__input"
-                name="incomes"
-                readOnly
-                value={expensesValue}
-              />
-            </Form.Item>
-            {addIncomes && (
-              <Form.Item>
+          <Form layout="vertical">
+            <Row gutter={[16, 24]}>
+              <Col>
                 <h2>Incomes</h2>
-                <Form.Item label={'Type of incomes'} style={{ marginTop: 24 }}>
+                <Form.Item label={'Type of incomes'} style={{ marginTop: 8 }}>
                   <Select
                     defaultValue={typeofIncomes}
                     onChange={(value) => {
@@ -134,77 +118,67 @@ const IncomeExpenses: FC = () => {
                     <Select.Option value="Інше">Інше</Select.Option>
                   </Select>
                 </Form.Item>
-                <Flex>
-                  <Input
-                    className="dashboard__input--with-btn"
-                    onChange={(e) => {
-                      setAmountIncomes(e.target.value);
-                    }}
-                  />
-                  <button
-                    className="btn"
-                    onClick={() => {
-                      addIncomesHandle();
-                    }}
+
+                <Input
+                  defaultValue={0}
+                  className="dashboard__input"
+                  onChange={(e) => {
+                    setAmountIncomes(e.target.value);
+                  }}
+                />
+
+                <button
+                  style={{ marginTop: 24 }}
+                  className="btn"
+                  onClick={() => {
+                    addIncomesHandle();
+                  }}
+                >
+                  add income
+                </button>
+              </Col>
+
+              <Col>
+                <Form.Item>
+                  <h2>Expenses</h2>
+                  <Form.Item
+                    label={'Type of expenses'}
+                    style={{ marginTop: 8 }}
                   >
-                    add income
-                  </button>
-                </Flex>
-              </Form.Item>
-            )}
-            {addExpenses && (
-              <Form.Item>
-                <h2>Expenses</h2>
-                <Form.Item label={'Type of expenses'} style={{ marginTop: 24 }}>
-                  <Select
-                    defaultValue={typeofExpenses}
-                    onChange={(value) => {
-                      setTypeofExpenses(value);
-                    }}
-                  >
-                    <Select.Option value="Продукти">Продукти</Select.Option>
-                    <Select.Option value="Комунальні платежі">
-                      Комунальні платежі
-                    </Select.Option>
-                    <Select.Option value="Заправка автомобіля">
-                      Заправка автомобіля
-                    </Select.Option>
-                    <Select.Option value="Інше">Інше</Select.Option>
-                  </Select>
-                </Form.Item>
-                <Flex>
+                    <Select
+                      defaultValue={typeofExpenses}
+                      onChange={(value) => {
+                        setTypeofExpenses(value);
+                      }}
+                    >
+                      <Select.Option value="Продукти">Продукти</Select.Option>
+                      <Select.Option value="Комунальні платежі">
+                        Комунальні платежі
+                      </Select.Option>
+                      <Select.Option value="Заправка автомобіля">
+                        Заправка автомобіля
+                      </Select.Option>
+                      <Select.Option value="Інше">Інше</Select.Option>
+                    </Select>
+                  </Form.Item>
+
                   <Input
-                    className="dashboard__input--with-btn"
+                    defaultValue={0}
+                    className="dashboard__input"
                     onChange={(e) => {
                       setAmountExpenses(e.target.value);
                     }}
                   />
-                  <button className="btn" onClick={() => addExpensesHandle()}>
+                  <button
+                    className="btn"
+                    style={{ marginTop: 24 }}
+                    onClick={() => addExpensesHandle()}
+                  >
                     add expenses
                   </button>
-                </Flex>
-              </Form.Item>
-            )}
-            <Flex justify="space-between">
-              <button
-                className="btn"
-                type="button"
-                onClick={() => {
-                  setAddIncomes(true);
-                }}
-              >
-                Add incomes
-              </button>
-              <button
-                className="btn"
-                type="button"
-                onClick={() => {
-                  setAddExpenses(true);
-                }}
-              >
-                Add expenses
-              </button>
-            </Flex>
+                </Form.Item>
+              </Col>
+            </Row>
           </Form>
           <IncomesList />
         </div>
