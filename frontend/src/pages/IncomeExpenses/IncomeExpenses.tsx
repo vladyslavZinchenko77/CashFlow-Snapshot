@@ -2,6 +2,7 @@ import { FC, useState, useEffect } from 'react';
 import { Form, Input, Flex, Select, Spin } from 'antd';
 import { useAppContext } from '../../context/AppContext';
 import DefaultLayout from '../../components/common/DefaultLayout';
+import { ArrowDownOutlined, CreditCardOutlined } from '@ant-design/icons';
 
 import './IncomeExpenses.scss';
 
@@ -54,7 +55,16 @@ const IncomeExpenses: FC = () => {
       updateBalanceValue(newAmountBalance);
       updateIncomes({
         amount: amountIncomes,
-        date: new Date(),
+        date: new Date().toLocaleString('en-US', {
+          year: 'numeric',
+          month: '2-digit',
+          day: '2-digit',
+          hour: '2-digit',
+          minute: '2-digit',
+          second: '2-digit',
+          hour12: false,
+        }),
+
         type: typeofIncomes,
       });
     }
@@ -113,7 +123,7 @@ const IncomeExpenses: FC = () => {
                     }}
                   >
                     <Select.Option value="Заробітня плата">
-                      Заробітня плата
+                      <CreditCardOutlined /> Заробітня плата
                     </Select.Option>
                     <Select.Option value="Здача нерухомості">
                       Здача нерухомості
@@ -196,12 +206,14 @@ const IncomeExpenses: FC = () => {
               </button>
             </Flex>
           </Form>
+
           {incomes &&
             incomes.map((item, index) => (
-              <ul key={index}>
+              <ul style={{ marginTop: 24 }} key={index}>
                 <li>
-                  <strong>Amount:</strong> {item.amount}, <strong>Type:</strong>{' '}
-                  {item.type}, <strong>Date:</strong> {item.date.toString()}
+                  <ArrowDownOutlined style={{ color: 'green' }} />
+                  {item.amount} {'uah'}, <strong>Type:</strong> {item.type},{' '}
+                  <strong>Date:</strong> {item.date.toString()}
                 </li>
               </ul>
             ))}

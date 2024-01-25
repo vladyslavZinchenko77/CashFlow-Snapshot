@@ -35,7 +35,7 @@ interface User {
 
 interface Income {
   amount: number | string | undefined;
-  date: Date;
+  date: string;
   type: string | undefined;
 }
 
