@@ -2,10 +2,22 @@ import { FC, useState, useEffect } from 'react';
 import { Form, Input, Flex, Select, Spin, Row, Col } from 'antd';
 import { useAppContext } from '../../context/AppContext';
 import DefaultLayout from '../../components/common/DefaultLayout';
-import { CreditCardOutlined } from '@ant-design/icons';
 import IncomesList from './components/IncomesList';
 import ExpensesList from './components/ExpensesList';
 import './IncomeExpenses.scss';
+
+const incomesTypesselect = [
+  'Заробітня плата',
+  'Здача нерухомості',
+  'Відсотки по депозиту',
+  'Інше',
+];
+const expensesTypesselect = [
+  'Продукти',
+  'Комунальні платежі',
+  'Заправка автомобіля',
+  'Інше',
+];
 
 const IncomeExpenses: FC = () => {
   const [isLoading, setIsloading] = useState<boolean>(false);
@@ -121,20 +133,19 @@ const IncomeExpenses: FC = () => {
                       setTypeofIncomes(value);
                     }}
                   >
-                    <Select.Option value="Заробітня плата">
-                      <CreditCardOutlined /> Заробітня плата
-                    </Select.Option>
-                    <Select.Option value="Здача нерухомості">
-                      Здача нерухомості
-                    </Select.Option>
-                    <Select.Option value="Відсотки по депозиту">
-                      Відсотки по депозиту
-                    </Select.Option>
-                    <Select.Option value="Інше">Інше</Select.Option>
+                    {incomesTypesselect.map((option, index) => {
+                      return (
+                        <Select.Option key={index} value={option}>
+                          {option}
+                        </Select.Option>
+                      );
+                    })}
                   </Select>
                 </Form.Item>
 
                 <Input
+                  type="number"
+                  step="0.01"
                   defaultValue={0}
                   className="dashboard__input"
                   onChange={(e) => {
@@ -166,18 +177,19 @@ const IncomeExpenses: FC = () => {
                         setTypeofExpenses(value);
                       }}
                     >
-                      <Select.Option value="Продукти">Продукти</Select.Option>
-                      <Select.Option value="Комунальні платежі">
-                        Комунальні платежі
-                      </Select.Option>
-                      <Select.Option value="Заправка автомобіля">
-                        Заправка автомобіля
-                      </Select.Option>
-                      <Select.Option value="Інше">Інше</Select.Option>
+                      {expensesTypesselect.map((option, index) => {
+                        return (
+                          <Select.Option key={index} value={option}>
+                            {option}
+                          </Select.Option>
+                        );
+                      })}
                     </Select>
                   </Form.Item>
 
                   <Input
+                    type="number"
+                    step="0.01"
                     defaultValue={0}
                     className="dashboard__input"
                     onChange={(e) => {
