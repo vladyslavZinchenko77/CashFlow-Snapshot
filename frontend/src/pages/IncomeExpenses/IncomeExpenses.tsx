@@ -4,7 +4,7 @@ import { useAppContext } from '../../context/AppContext';
 import DefaultLayout from '../../components/common/DefaultLayout';
 import { CreditCardOutlined } from '@ant-design/icons';
 import IncomesList from './components/IncomesList';
-
+import ExpensesList from './components/ExpensesList';
 import './IncomeExpenses.scss';
 
 const IncomeExpenses: FC = () => {
@@ -14,6 +14,7 @@ const IncomeExpenses: FC = () => {
     expensesValue,
     balanceValue,
     updateIncomes,
+    updateExpenses,
     updateExpensesValue,
     updateIncomesValue,
     updateBalanceValue,
@@ -84,6 +85,20 @@ const IncomeExpenses: FC = () => {
       let newAmountBalance = balanceValue - numericAmountExpenses;
       updateExpensesValue(newAmountExpenses);
       updateBalanceValue(newAmountBalance);
+      updateExpenses({
+        amount: amountExpenses,
+        date: new Date().toLocaleString('en-US', {
+          year: 'numeric',
+          month: '2-digit',
+          day: '2-digit',
+          hour: '2-digit',
+          minute: '2-digit',
+          second: '2-digit',
+          hour12: false,
+        }),
+
+        type: typeofExpenses,
+      });
     }
     setAddExpenses(false);
   };
@@ -181,6 +196,7 @@ const IncomeExpenses: FC = () => {
             </Row>
           </Form>
           <IncomesList />
+          <ExpensesList />
         </div>
       ) : (
         <Flex justify="center">
