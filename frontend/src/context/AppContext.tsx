@@ -12,12 +12,14 @@ interface AppContextProps {
 }
 
 interface AppContextValues {
-  incomes: Income[];
+  incomes: Incomes[];
+  expenses: Expenses[];
   incomesValue: number;
   expensesValue: number;
   balanceValue: number;
   user: User;
-  updateIncomes: (value: Income) => void;
+  updateIncomes: (value: Incomes) => void;
+  updateExpenses: (value: Incomes) => void;
   updateIncomesValue: (value: number) => void;
   updateExpensesValue: (value: number) => void;
   updateBalanceValue: (value: number) => void;
@@ -33,7 +35,13 @@ interface User {
   country: string;
 }
 
-interface Income {
+interface Incomes {
+  amount: number | string | undefined;
+  date: string;
+  type: string | undefined;
+}
+
+interface Expenses {
   amount: number | string | undefined;
   date: string;
   type: string | undefined;
@@ -64,9 +72,14 @@ export const AppProvider: FC<AppContextProps> = ({ children }) => {
     const storedValue = localStorage.getItem('balanceValue');
     return storedValue ? parseFloat(storedValue) : 0;
   });
-  const [incomes, setIncomes] = useState<Income[]>(() => {
+  const [incomes, setIncomes] = useState<Incomes[]>(() => {
     const storedIncomes = localStorage.getItem('incomes');
     return storedIncomes ? JSON.parse(storedIncomes) : [];
+  });
+
+  const [expenses, setExpenses] = useState<Expenses[]>(() => {
+    const storedExpenses = localStorage.getItem('expenses');
+    return storedExpenses ? JSON.parse(storedExpenses) : [];
   });
   //  USER
 
@@ -101,13 +114,19 @@ export const AppProvider: FC<AppContextProps> = ({ children }) => {
     setUser(value);
     localStorage.setItem('userValue', JSON.stringify(user));
   };
-  const updateIncomes = (income: Income) => {
+  const updateIncomes = (income: Incomes) => {
     setIncomes((prevIncomes) => [...prevIncomes, income]);
     localStorage.setItem('incomes', JSON.stringify([...incomes, income]));
     console.log('Incomes updated:', [...incomes, income]);
   };
+  const updateExpenses = (cost: Expenses) => {
+    setExpenses((prevExpenses) => [...prevExpenses, cost]);
+    localStorage.setItem('expenses', JSON.stringify([...expenses, cost]));
+    console.log('Expenses updated:', [...expenses, cost]);
+  };
   const contextValues: AppContextValues = {
     incomes,
+    expenses,
     incomesValue,
     expensesValue,
     balanceValue,
@@ -117,6 +136,7 @@ export const AppProvider: FC<AppContextProps> = ({ children }) => {
     updateExpensesValue,
     updateBalanceValue,
     updateUserValue,
+    updateExpenses,
   };
 
   useEffect(() => {
