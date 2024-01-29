@@ -29,7 +29,7 @@ const MoneyStreamList: FC = () => {
         if (item.type === 'Продукти') {
           icon = (
             <ShoppingCartOutlined
-              style={{ color: 'green', margin: '0 8px 0 8px' }}
+              style={{ color: 'red', margin: '0 8px 0 8px' }}
             />
           );
         } else if (item.type === 'Комунальні платежі') {
