@@ -36,12 +36,14 @@ interface User {
 }
 
 interface Incomes {
+  title: string;
   amount: number | string | undefined;
   date: string;
   type: string | undefined;
 }
 
 interface Expenses {
+  title: string;
   amount: number | string | undefined;
   date: string;
   type: string | undefined;

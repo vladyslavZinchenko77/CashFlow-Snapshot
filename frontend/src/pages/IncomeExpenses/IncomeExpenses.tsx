@@ -2,8 +2,9 @@ import { FC, useState, useEffect } from 'react';
 import { Form, Input, Flex, Select, Spin, Row, Col } from 'antd';
 import { useAppContext } from '../../context/AppContext';
 import DefaultLayout from '../../components/common/DefaultLayout';
-import IncomesList from './components/IncomesList';
-import ExpensesList from './components/ExpensesList';
+import IncomesList from '../../components/common/IncomesList/IncomesList';
+import ExpensesList from '../../components/common/ExpensesList/ExpensesList';
+import MoneyStreamList from '../../components/common/MoneyStreamList';
 import './IncomeExpenses.scss';
 
 const incomesTypesselect = [
@@ -67,6 +68,7 @@ const IncomeExpenses: FC = () => {
       updateIncomesValue(newAmountRevenue);
       updateBalanceValue(newAmountBalance);
       updateIncomes({
+        title: 'incomes',
         amount: amountIncomes,
         date: new Date().toLocaleString('en-US', {
           year: 'numeric',
@@ -98,6 +100,7 @@ const IncomeExpenses: FC = () => {
       updateExpensesValue(newAmountExpenses);
       updateBalanceValue(newAmountBalance);
       updateExpenses({
+        title: 'expenses',
         amount: amountExpenses,
         date: new Date().toLocaleString('en-US', {
           year: 'numeric',
@@ -207,8 +210,9 @@ const IncomeExpenses: FC = () => {
               </Col>
             </Row>
           </Form>
-          <IncomesList />
-          <ExpensesList />
+          {/* <IncomesList />
+          <ExpensesList /> */}
+          <MoneyStreamList />
         </div>
       ) : (
         <Flex justify="center">
