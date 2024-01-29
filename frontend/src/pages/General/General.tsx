@@ -2,6 +2,7 @@ import { FC } from 'react';
 import { Input, Form } from 'antd';
 import { useAppContext } from '../../context/AppContext';
 import DefaultLayout from '../../components/common/DefaultLayout';
+import MoneyStreamList from '../../components/common/MoneyStreamList';
 
 import './General.scss';
 
@@ -38,6 +39,7 @@ const General: FC = () => {
             <Input className="dashboard__input" readOnly value={balanceValue} />
           </Form.Item>
         </Form>
+        <MoneyStreamList />
       </div>
     </DefaultLayout>
   );
