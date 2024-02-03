@@ -2,8 +2,7 @@ import { FC, useState, useEffect } from 'react';
 import { Form, Input, Flex, Select, Spin, Row, Col } from 'antd';
 import { useAppContext } from '../../context/AppContext';
 import DefaultLayout from '../../components/common/DefaultLayout';
-import IncomesList from '../../components/common/IncomesList/IncomesList';
-import ExpensesList from '../../components/common/ExpensesList/ExpensesList';
+
 import MoneyStreamList from '../../components/common/MoneyStreamList';
 import './IncomeExpenses.scss';
 
@@ -32,14 +31,9 @@ const IncomeExpenses: FC = () => {
     updateIncomesValue,
     updateBalanceValue,
   } = useAppContext();
-  const [addIncomes, setAddIncomes] = useState<boolean>(false);
-  const [addExpenses, setAddExpenses] = useState<boolean>(false);
-  const [amountIncomes, setAmountIncomes] = useState<
-    number | undefined | string
-  >();
-  const [amountExpenses, setAmountExpenses] = useState<
-    number | undefined | string
-  >();
+
+  const [amountIncomes, setAmountIncomes] = useState<number>(0);
+  const [amountExpenses, setAmountExpenses] = useState<number>(0);
   const [typeofIncomes, setTypeofIncomes] = useState<string | undefined>(
     'Заробітня плата'
   );
@@ -55,67 +49,47 @@ const IncomeExpenses: FC = () => {
   }, []);
 
   const addIncomesHandle = () => {
-    const numericAmountIncomes =
-      typeof amountIncomes === 'string'
-        ? parseFloat(amountIncomes)
-        : typeof amountIncomes === 'number'
-        ? amountIncomes
-        : 0; // По умолчанию установим 0, если amountRavenue не является строкой или числом
-    if (!isNaN(numericAmountIncomes)) {
-      // Проверка на NaN
-      let newAmountRevenue = numericAmountIncomes + incomesValue;
-      let newAmountBalance = balanceValue + numericAmountIncomes;
-      updateIncomesValue(newAmountRevenue);
-      updateBalanceValue(newAmountBalance);
-      updateIncomes({
-        title: 'incomes',
-        amount: amountIncomes,
-        date: new Date().toLocaleString('en-US', {
-          year: 'numeric',
-          month: '2-digit',
-          day: '2-digit',
-          hour: '2-digit',
-          minute: '2-digit',
-          second: '2-digit',
-          hour12: false,
-        }),
+    let newAmountRevenue = amountIncomes + incomesValue;
+    let newAmountBalance = balanceValue + amountIncomes;
+    updateIncomesValue(newAmountRevenue);
+    updateBalanceValue(newAmountBalance);
+    updateIncomes({
+      title: 'incomes',
+      amount: amountIncomes,
+      date: new Date().toLocaleString('en-US', {
+        year: 'numeric',
+        month: '2-digit',
+        day: '2-digit',
+        hour: '2-digit',
+        minute: '2-digit',
+        second: '2-digit',
+        hour12: false,
+      }),
 
-        type: typeofIncomes,
-      });
-    }
-    setAddIncomes(false);
+      type: typeofIncomes,
+    });
   };
 
   const addExpensesHandle = () => {
-    const numericAmountExpenses =
-      typeof amountExpenses === 'string'
-        ? parseFloat(amountExpenses)
-        : typeof amountExpenses === 'number'
-        ? amountExpenses
-        : 0; // По умолчанию установим 0, если amountRavenue не является строкой или числом
-    if (!isNaN(numericAmountExpenses)) {
-      // Проверка на NaN
-      let newAmountExpenses = numericAmountExpenses + expensesValue;
-      let newAmountBalance = balanceValue - numericAmountExpenses;
-      updateExpensesValue(newAmountExpenses);
-      updateBalanceValue(newAmountBalance);
-      updateExpenses({
-        title: 'expenses',
-        amount: amountExpenses,
-        date: new Date().toLocaleString('en-US', {
-          year: 'numeric',
-          month: '2-digit',
-          day: '2-digit',
-          hour: '2-digit',
-          minute: '2-digit',
-          second: '2-digit',
-          hour12: false,
-        }),
+    let newAmountExpenses = amountExpenses + expensesValue;
+    let newAmountBalance = balanceValue - amountExpenses;
+    updateExpensesValue(newAmountExpenses);
+    updateBalanceValue(newAmountBalance);
+    updateExpenses({
+      title: 'expenses',
+      amount: amountExpenses,
+      date: new Date().toLocaleString('en-US', {
+        year: 'numeric',
+        month: '2-digit',
+        day: '2-digit',
+        hour: '2-digit',
+        minute: '2-digit',
+        second: '2-digit',
+        hour12: false,
+      }),
 
-        type: typeofExpenses,
-      });
-    }
-    setAddExpenses(false);
+      type: typeofExpenses,
+    });
   };
 
   return (
@@ -152,7 +126,7 @@ const IncomeExpenses: FC = () => {
                   defaultValue={0}
                   className="dashboard__input"
                   onChange={(e) => {
-                    setAmountIncomes(e.target.value);
+                    setAmountIncomes(Number(e.target.value));
                   }}
                 />
 
@@ -196,7 +170,7 @@ const IncomeExpenses: FC = () => {
                     defaultValue={0}
                     className="dashboard__input"
                     onChange={(e) => {
-                      setAmountExpenses(e.target.value);
+                      setAmountExpenses(Number(e.target.value));
                     }}
                   />
                   <button
@@ -210,8 +184,6 @@ const IncomeExpenses: FC = () => {
               </Col>
             </Row>
           </Form>
-          {/* <IncomesList />
-          <ExpensesList /> */}
           <MoneyStreamList />
         </div>
       ) : (
