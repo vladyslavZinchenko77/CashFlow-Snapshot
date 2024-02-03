@@ -7,6 +7,10 @@
     position: fixed;
     top: 0;
     bottom: 0;
+
+    @media screen and (max-width: $mobile-max) {
+        width: 80px;
+    }
     .sidebar__nav{
         margin-top: 24px;
         .sidebar__list{
