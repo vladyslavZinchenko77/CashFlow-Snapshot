@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import { Input, Form } from 'antd';
+import { Input, Form, Row, Col } from 'antd';
 import { useAppContext } from '../../context/AppContext';
 import DefaultLayout from '../../components/common/DefaultLayout';
 import MoneyStreamList from '../../components/common/MoneyStreamList';
@@ -20,24 +20,44 @@ const General: FC = () => {
       subtitle="Here you can see general information"
     >
       <div className="home">
-        <h2 className="dashboard-title" style={{ textAlign: 'left' }}>
+        <h2
+          className="dashboard-title"
+          style={{ textAlign: 'left', padding: '24px 0' }}
+        >
           {hiUserText}
         </h2>
         <Form layout="horizontal" className="home__form">
-          <Form.Item className="home__form-item" label="Incomes">
-            <Input className="dashboard__input" readOnly value={incomesValue} />
-          </Form.Item>
+          <Row>
+            <Col>
+              <Form.Item className="home__form-item" label="Incomes">
+                <Input
+                  className="dashboard__input"
+                  readOnly
+                  value={incomesValue}
+                />
+              </Form.Item>
+            </Col>
 
-          <Form.Item className="home__form-item" label="Expenses">
-            <Input
-              className="dashboard__input"
-              readOnly
-              value={expensesValue}
-            />
-          </Form.Item>
-          <Form.Item className="home__form-item" label="Balance">
-            <Input className="dashboard__input" readOnly value={balanceValue} />
-          </Form.Item>
+            <Col>
+              <Form.Item className="home__form-item" label="Expenses">
+                <Input
+                  className="dashboard__input"
+                  readOnly
+                  value={expensesValue}
+                />
+              </Form.Item>
+            </Col>
+
+            <Col>
+              <Form.Item className="home__form-item" label="Balance">
+                <Input
+                  className="dashboard__input"
+                  readOnly
+                  value={balanceValue}
+                />
+              </Form.Item>
+            </Col>
+          </Row>
         </Form>
         <MoneyStreamList />
       </div>
