@@ -1,5 +1,7 @@
 import { FC, useState } from 'react';
 import { Link, NavLink, useNavigate } from 'react-router-dom';
+import { useBreakpoints } from '../../../hooks/useBreakpoints';
+
 import {
   HomeOutlined,
   DollarOutlined,
@@ -15,6 +17,7 @@ import './Sidebar.scss';
 const Sidebar: FC = () => {
   const [activeTab, setActiveTab] = useState(1);
   const navigate = useNavigate();
+  const { isMobile } = useBreakpoints();
 
   const exit = () => {
     navigate('/log-in');
@@ -39,7 +42,7 @@ const Sidebar: FC = () => {
               onClick={() => setActiveTab(1)}
             >
               <HomeOutlined style={{ marginRight: 10 }} />
-              General
+              {isMobile ? '' : 'General'}
             </NavLink>
           </li>
           <li
@@ -55,7 +58,7 @@ const Sidebar: FC = () => {
               onClick={() => setActiveTab(2)}
             >
               <DollarOutlined style={{ marginRight: 10 }} />
-              Incomes & Expenses
+              {isMobile ? '' : 'Incomes & Expenses'}
             </NavLink>
           </li>
           <li
@@ -71,7 +74,7 @@ const Sidebar: FC = () => {
               onClick={() => setActiveTab(3)}
             >
               <LineChartOutlined style={{ marginRight: 10 }} />
-              Statistics
+              {isMobile ? '' : 'Statistics'}
             </NavLink>
           </li>
           <li
@@ -84,7 +87,7 @@ const Sidebar: FC = () => {
           >
             <Link to={'/dashboard/goals'} className="sidebar__list-item--link">
               <CreditCardOutlined style={{ marginRight: 10 }} />
-              Goals and Budgets
+              {isMobile ? '' : 'Goals and Budgets'}
             </Link>
           </li>
           <li
@@ -100,7 +103,7 @@ const Sidebar: FC = () => {
               onClick={() => setActiveTab(5)}
             >
               <SettingOutlined style={{ marginRight: 10 }} />
-              Settings
+              {isMobile ? '' : 'Settings'}
             </Link>
           </li>
           <li
@@ -112,7 +115,7 @@ const Sidebar: FC = () => {
           >
             <a href="" onClick={exit} className="sidebar__list-item--link">
               <LoginOutlined style={{ marginRight: 10 }} />
-              Exit
+              {isMobile ? '' : 'Exit'}
             </a>
           </li>
         </ul>
