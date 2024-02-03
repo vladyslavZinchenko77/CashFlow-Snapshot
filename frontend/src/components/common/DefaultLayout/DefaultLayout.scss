@@ -1,6 +1,11 @@
+@import "../../../styles/variables.scss";
+
 .default-layout{
     display: flex;
     margin: 24px 0 0 280px;
+    @media screen and (max-width: $mobile-max){
+        margin: 24px 0 0 80px;
+    }
     .default-layout__content{
         padding: 24px;
         
